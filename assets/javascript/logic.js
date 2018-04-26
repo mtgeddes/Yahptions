@@ -9,7 +9,6 @@ $(window).on("load", function(){  // Waits until HTML is loaded before proceedin
                     + "&entity_id=" + location
                     + "&entity_type=" + locationType;
                     
-
     $.ajax({  // Fire the api call to get the restaurants
         url: queryURL1,
         dataType: 'json',
@@ -35,13 +34,9 @@ $(window).on("load", function(){  // Waits until HTML is loaded before proceedin
             });
         
         }
-
-        
+      
 
 
 
     });
-
-
-
 });
