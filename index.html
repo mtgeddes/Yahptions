@@ -27,50 +27,49 @@
 </head>
 
 <body>
-    <!-- Search modal -->
+    <!-- searchModal -->
     <div class="container">
-        <!-- Modal -->
+        <!-- .modal -->
         <div class="modal show" id="searchModal" role="dialog">
             <div class="modal-dialog">
-            <!-- Modal content-->
+            <!-- .modal-content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- 'x' in right corner -->
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Find Yahptions</h4>
                 </div>
-
+                <!-- .modal-body -->
                 <div class="modal-body">
                     <!-- Near me Button -->
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="radio">
-                                <label><input type="radio" name="radioBtn" id="nearMeBtn">Near Me</label>
-                            </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radioBtn" id="nearMeBtn" value="Near Me">Near Me
+                            </label>
                         </div>
                     </div>
 
                     <!-- Zip Code Button -->
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="radio">
-                                <label><input type="radio" name="radioBtn" id="zipCodeBtn">Zip Code</label>
-                                <input type="text" name="mail" size="5.5" placeholder="">
-                            </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radioBtn" id="zipCodeBtn" value="Zip Code">Zip Code
+                                <input type="text" name="mail" size="6" placeholder="">
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Radius -->
-                    <div class="form-group">
-                        <div class="col-sm-12">Radius
-                            <select id="radiusBtn" class="custom-select" id="inputOptions">
-                                <option selected>Choose...</option>
-                                <option value="1">1 mile</option>
-                                <option value="2">5 miles</option>
-                                <option value="3">10 miles</option>
-                            </select>
-                        </div>
+                    <!-- Radius w/ required coding -->
+                    <div class="form-group">Radius
+                        <select id="radiusBtn" class="custom-select" id="inputOptions" required>
+                            <option selected>Choose...</option>
+                            <option value="1">1 mile</option>
+                            <option value="2">5 miles</option>
+                            <option value="3">10 miles</option>
+                        </select>
                     </div>
+                <!-- /.modal-body  -->
                 </div>
 
             <!-- Ready button -->
