@@ -45,6 +45,7 @@ function getRestaurants() {
     console.log("Latitude: " + latitude);
     console.log("Longitude: " + longitude);
     // Begin Zomato restaurants api call; display restaurants nearby current longitude + latitude
+    radius = $('#radiusBtn').val();
     var apiKey = "aabf39b370ad7219908488f6fbaa652c";
     var locationType = "city";
     var page1 = 0;
@@ -53,7 +54,7 @@ function getRestaurants() {
                     + "user-key=" + apiKey 
                     + "&lat=" + latitude
                     + "&lon=" + longitude
-                    + "&radius=" + radius
+                    + "&radius=" + radius * 1609
     var zomatoURL1 = searchURL + "&start=" + page1;
     var zomatoURL2 = searchURL + "&start=" + page2;
 
