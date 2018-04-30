@@ -2,16 +2,6 @@ button {
     margin: 7px;
 }
 
-.modal-title {
-    color: rgb(228, 59, 59);
-    font-size: 20px;
-}
-
-.form-group {
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 #option-cards{
     position: relative;
     box-sizing: border-box;
@@ -23,4 +13,14 @@ button {
     float: left;
     margin-left: 15%;
     margin-top: 10px;
+}
+
+.modal-title {
+    color: rgb(228, 59, 59);
+    font-size: 20px;
+}
+
+.form-group {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

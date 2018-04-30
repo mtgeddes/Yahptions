@@ -1,27 +1,30 @@
 $(window).on("load", function(){  // Waits until HTML is loaded before proceeding with the rest
+    $('#mainPage').css('opacity', '.3');
     var latitude;
     var longitude;
     var restaurantsArray = [];
     var radius;
-    console.log("Latitude: " + latitude);
-    console.log("Longitude: " + longitude);
+    var zipCode;
 
 function getLatLongbyZipcode() {
+    $('#mainPage').css('opacity', 'unset');
+    console.log("getLatLongbyZipcode has been fired!");
     // Fire the api call to convert zipcode to latitude + longitude
-    var zipCode = "28078"  // Placeholder; later update this to $("#zipCode").val().trim();
+    zipCode = $('#zipCodeText').val();  // Placeholder; later update this to $("#zipCode").val().trim();
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { "address": zipCode }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
-            var location = results[0].geometry.location, latitude  = location.lat(), longitude = location.lng();
+            latitude  = results[0].geometry.location.lat(), longitude = results[0].geometry.location.lng();
             console.log("Latitude: " + latitude);
             console.log("Longitude: " + longitude);
+            console.log("Zip Code:" + zipCode);
             getRestaurants();
         }
     });
 }
-getLatLongbyZipcode();
-    
+
 function getLatLongbyNearme() {
+    $('#mainPage').css('opacity', 'unset');
      // Begin Ipdata api call; display current zip code
      var geocodeURL = "https://api.ipdata.co";
      $.ajax({  // Fire the api call to get the restaurants
@@ -29,7 +32,7 @@ function getLatLongbyNearme() {
         dataType: 'json',
         async: true,
         success: function(data) {
-            var latitude = data.latitude, longitude = data.longitude;
+            latitude = data.latitude, longitude = data.longitude;
             console.log("Latitude: " + latitude);
             console.log("Longitude: " + longitude);
             getRestaurants();
@@ -37,9 +40,10 @@ function getLatLongbyNearme() {
     });
 }
 
-getLatLongbyNearme();
-
 function getRestaurants() {
+    console.log("getRestaurants has been fired!");
+    console.log("Latitude: " + latitude);
+    console.log("Longitude: " + longitude);
     // Begin Zomato restaurants api call; display restaurants nearby current longitude + latitude
     var apiKey = "aabf39b370ad7219908488f6fbaa652c";
     var locationType = "city";
@@ -72,6 +76,7 @@ function getRestaurants() {
                     for (i = 0; i < data2.restaurants.length; i++) {
                         restaurantsArray.push(data2.restaurants[i]);
                     }
+                    console.log(restaurantsArray);
                 }
             });
         }
@@ -79,31 +84,39 @@ function getRestaurants() {
 }
 
 // Closes the search Modal
-$(".close").on("click", function () {
+$(".close").on("click", function() {
     $("#searchModal").hide();
 });
 
 // Opens the search Modal
-$(".open").on("click", function () {
+$(".open").on("click", function() {
     $("#searchModal").show();
 });
 
 // Submits the results of the search Modal and hides it
-$("#readyBtn").on("click", function () {
-    $("#searchModal").hide();
+$("#readyBtn").on("click", function() {
+    $("#searchModal").removeClass().addClass("modal show zoomOut animated");
 
     restaurantsArray = [];
     radius = $("#radiusBtn").attr("value") * 8050;
     
-
-    if ($("#nearMeBtn").val() == "checked") {
+    if ($("#nearMeBtn").is(':checked')) {
         getLatLongbyNearme();
     } else {
         getLatLongbyZipcode();
     }
 })
 
-console.log(restaurantsArray);
+$("#showModal").on("click", function() {
+    $("#searchModal").removeClass().addClass("modal show zoomInDown animated");
+    $('#mainPage').css('opacity', '.3');
+});
+
+$("#hideModal").on("click", function() {
+    $("#searchModal").removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
+});
+
 
 });
 
