@@ -122,6 +122,10 @@ $("#hideModal").on("click", function() {
 var chosen = [];
 var eliminated = [];
 
+function searchrestaurants () {
+
+}
+
 // Choose and eliminate function...
 $(".cardclass").on("click", function() {
 
@@ -139,8 +143,22 @@ $(".cardclass").on("click", function() {
         $(this).css("opacity", "0.2");
         $(this).removeClass("borderchosen");
         $(this).addClass("bordereliminated");
+        if (eliminated.length == 4) {
+            chosen = []; 
+            eliminated = [];
+            $("#userSelection").removeClass().addClass("modal show zoomInDown animated");
+            $('#mainPage').css('opacity', '.3');
+            // need to add a clear roll options (maybe)
+        }
     }
 })
+
+// Closes final chosen restaurant modal
+$(".closeUserSelection").on("click", function() {
+    $("#userSelection").removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
+});
+
 
 });
 
