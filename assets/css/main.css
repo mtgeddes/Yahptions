@@ -21,14 +21,52 @@ button {
 }
 
 .modal-title {
-    color: rgb(228, 59, 59);
-    font-size: 20px;
+        font-size: 20px;
 }
 
 .form-group {
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* userSelection */
+#restPlaceholder {
+    width: 100px;
+    height: 100px;
+    margin-left: 75px;
+
+}
+
+#restaurantDetail {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+#restaurantName {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    margin-top: -5px;
+    text-align: center;
+}
+
+#modalTitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    margin-bottom: -45px;
+    text-align: center;
+    margin-top: -10px;
+    padding-bottom: 15px;
+}
+
+.bg-danger{
+    background-color: rgb(211, 73, 73);
+}
+
+
+#option-cards{
+    position: relative;
+    box-sizing: border-box;
+    float: left;
 
 .borderchosen {
     border: 3px solid #0cd808;
@@ -67,6 +105,7 @@ button {
     font-size: 48px;
     font-weight: bolder;
     line-height: 44px;
+
 }
 
 p{
@@ -77,6 +116,7 @@ p{
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 @media only screen and (min-width: 768px) and (max-width: 1000px){
     h3{
@@ -101,4 +141,3 @@ p{
     margin-bottom: 30px;
 }
 }
-
