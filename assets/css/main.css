@@ -11,6 +11,7 @@ button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+<<<<<<< HEAD
 
 
 /* userSelection */
@@ -46,3 +47,17 @@ button {
     background-color: rgb(211, 73, 73);
 }
 
+=======
+#option-cards{
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+}
+
+.optionButtons{
+    position: relative;
+    float: left;
+    margin-left: 15%;
+    margin-top: 10px;
+}
+>>>>>>> c818dac3acd17562f3f1970246bfac258f4159e6
