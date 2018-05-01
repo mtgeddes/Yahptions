@@ -80,10 +80,23 @@ function getRestaurants() {
                         restaurantsArray.push(data2.restaurants[i]);
                     }
                     console.log(restaurantsArray);
+                    displayRestaurants();
                 }
             });
         }
     });
+}
+
+function displayRestaurants() {
+    console.log("displayRestaurants has been fired!");
+    var counter = 0;
+    for (i=0; i<=4; i++) {
+        $('.option-' + i).attr('search-result', i);
+        $('.option-' + i + ' h3').text(restaurantsArray[i].restaurant.name);
+        $('.option-' + i + ' img').attr('src', restaurantsArray[i].restaurant.featured_image)
+        $('.option-' + i).append('<h4>' + restaurantsArray[i].restaurant.cuisines + '</h4>').append('<h4>Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span></h4>');
+
+    }
 }
 
 // Closes the search Modal
