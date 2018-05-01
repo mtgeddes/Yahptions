@@ -162,6 +162,70 @@ $(".closeUserSelection").on("click", function() {
 });
 
 
+        ////////////////////////////////////////////////////
+        //////////// Local storage of favorites ////////////
+        //////////////////////////////////////////////////// 
+
+// Creates variable for existing array in storage
+var favoriteList = JSON.parse(localStorage.getItem("favoriteRestaurants"));
+
+// creates local empty favorite list if one doesn't already exist
+if (!Array.isArray(favoriteList)) {
+    favoriteList = [];
+  }
+
+// Puts favorites on page
+function putFavoritesOnPage() {
+    $("#favorites").empty(); // empties out the html
+    var insidefavoriteList = JSON.parse(localStorage.getItem("favoriteRestaurants"));
+
+    if (!Array.isArray(insidefavoriteList)) {
+        insidefavoriteList = [];
+    }
+    for (var i = 0; i < insidefavoriteList.length; i++) {
+        var p = $("<p>").text(insidefavoriteList[i]);
+        // [Create Later] will need an element created for each piece of data we want from restaurant
+        // I think it will look like this: 
+        // "insidefavoriteList[i].[i]"
+        // "insidefavoriteList[i].[i+1]"
+        // "insidefavoriteList[i].[i+2]"
+        var b = $("<button class='delete'>").text("x").attr("data-index", i);
+        p.prepend(b);
+        $("#favorites").append(p);
+    }
+}
+
+putFavoritesOnPage();
+
+// Deletes past favorites
+$(document).on("click", "button.delete", function() {
+    var restaurantList = JSON.parse(localStorage.getItem("favoriteRestaurants"));
+    var currentIndex = $(this).attr("data-index");
+
+    // Deletes the item marked for deletion
+    restaurantList.splice(currentIndex, 1);
+    favoriteList = restaurantList;
+
+    localStorage.setItem("favoriteRestaurants", JSON.stringify(restaurantList));
+
+    putFavoritesOnPage();
+});
+
+
+// Makes a restaurant a favorite
+$(".heart").on("click", function(event) {
+    event.preventDefault();
+    // [Create Later] Need to create an array that will store multiple restaurant data attributes (i.e. name, website, phone, etc). 
+    var fav = $(this).text(); // [Create Later] Will need to change this to where restaurant name is located on HTML
+    // [Create Later] 
+    favoriteList.push(fav); // Will want it to push array of array
+    localStorage.setItem("favoriteRestaurants", JSON.stringify(favoriteList));
+
+    putFavoritesOnPage();
+});
+
+
+
 }); // <--end of on page load. 
 
 
