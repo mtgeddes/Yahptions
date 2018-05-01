@@ -51,10 +51,10 @@ function getRestaurants() {
     var page1 = 0;
     var page2 = 20;
     var searchURL =  "https://developers.zomato.com/api/v2.1/search?"
-                    + "user-key=" + apiKey 
+                    //+ "user-key=" + apiKey 
                     + "&lat=" + latitude
                     + "&lon=" + longitude
-                    + "&radius=" + radius * 1609
+                    + "&radius=" + parseInt(radius / 0.00062137) * 1.24  // convert miles to meters with a min of 2,000 M
     var zomatoURL1 = searchURL + "&start=" + page1;
     var zomatoURL2 = searchURL + "&start=" + page2;
 
@@ -64,6 +64,7 @@ function getRestaurants() {
         async: true,
         beforeSend: function(xhr){xhr.setRequestHeader('user-key', 'aabf39b370ad7219908488f6fbaa652c');},  // This inserts the api key into the HTTP header
         success: function(data1) {  // Then do the following...
+            console.log(zomatoURL1);
             for (i = 0; i < data1.restaurants.length; i++) {
                 restaurantsArray.push(data1.restaurants[i]);
             }
@@ -74,6 +75,7 @@ function getRestaurants() {
                 async: true,
                 beforeSend: function(xhr){xhr.setRequestHeader('user-key', 'aabf39b370ad7219908488f6fbaa652c');},  // This inserts the api key into the HTTP header
                 success: function(data2) {  // Then do the following...
+                    console.log(zomatoURL2);
                     for (i = 0; i < data2.restaurants.length; i++) {
                         restaurantsArray.push(data2.restaurants[i]);
                     }
