@@ -5,6 +5,7 @@ $(window).on("load", function(){  // Waits until HTML is loaded before proceedin
     var restaurantsArray = [];
     var radius;
     var zipCode;
+    var counter = 0;
 
 function getLatLongbyZipcode() {
     $('#mainPage').css('opacity', 'unset');
@@ -89,13 +90,21 @@ function getRestaurants() {
 
 function displayRestaurants() {
     console.log("displayRestaurants has been fired!");
-    var counter = 0;
-    for (i=0; i<=4; i++) {
+    for (var i=0; i<=4; i++) {
         $('.option-' + i).attr('search-result', i);
         $('.option-' + i + ' h3').text(restaurantsArray[i].restaurant.name);
         $('.option-' + i + ' img').attr('src', restaurantsArray[i].restaurant.featured_image)
         $('.option-' + i).append('<h4>' + restaurantsArray[i].restaurant.cuisines + '</h4>').append('<h4>Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span></h4>');
+        counter++;
+    }
+}
 
+function reRoll() {
+    console.log("reRoll has been fired!");
+    for (var i=0; i<=4; i++) {
+        if ($('.option-' + i).attr('search-result') == "" ) {
+
+        }
     }
 }
 
