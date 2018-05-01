@@ -13,6 +13,12 @@ button {
     justify-content: space-around;
 }
 
+#reroll{
+    width: 16%;
+    margin-left: 42%;
+    margin-right: 42%
+}
+
 .modal-title {
     color: rgb(228, 59, 59);
     font-size: 20px;
