@@ -118,6 +118,29 @@ $("#hideModal").on("click", function() {
     $('#mainPage').css('opacity', 'unset');
 });
 
+// Variables to keep track of chosen and eliminated phases
+var chosen = [];
+var eliminated = [];
+
+// Choose and eliminate function...
+$(".cardclass").on("click", function() {
+
+    var state = $(this).attr("data-state");
+    
+    if (state ==="chooseRestaurant") {
+        chosen.push("x");
+        $(this).attr("data-state", "lockedin");
+        $(this).addClass("borderchosen");
+        console.log(chosen)
+    }
+
+    else if (state ==="lockedin" && chosen.length == 5) {
+        eliminated.push("x");
+        $(this).css("opacity", "0.2");
+        $(this).removeClass("borderchosen");
+        $(this).addClass("bordereliminated");
+    }
+})
 
 });
 

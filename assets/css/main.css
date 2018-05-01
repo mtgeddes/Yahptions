@@ -23,6 +23,34 @@ button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.borderchosen {
+    border: 3px solid #0cd808;
+    border-radius: 5px;
+    box-shadow: 
+    0 0 1px #b3ff51, 
+    0 0 2px #b3ff51, 
+    0 0 6px #b3ff51, 
+    0 0 12px #b3ff51, 
+    inset 0 0 1px #b3ff51, 
+    inset 0 0 2px #b3ff51, 
+    inset 0 0 6px #b3ff51, 
+    inset 0 0 12px #b3ff51;
+  }
+
+  .bordereliminated {
+    border: 3px solid #f90000;
+    border-radius: 5px;
+    box-shadow: 
+    0 0 1px #ff1919, 
+    0 0 2px #ff1919, 
+    0 0 6px #ff1919, 
+    0 0 12px #ff1919, 
+    inset 0 0 1px #ff1919, 
+    inset 0 0 2px #ff1919, 
+    inset 0 0 6px #ff1919, 
+    inset 0 0 12px #ff1919;
+  }
+
 h3{
     text-align: center;
 }
@@ -42,3 +70,4 @@ h3{
        margin-right: 50px;
    }
 }
+
