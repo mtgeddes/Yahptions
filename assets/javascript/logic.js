@@ -160,6 +160,6 @@ $(".closeUserSelection").on("click", function() {
 });
 
 
-});
+}); // <--end of on page load. 
 
 
