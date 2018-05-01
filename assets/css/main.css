@@ -9,10 +9,8 @@ button {
 }
 
 .optionButtons{
-    position: relative;
-    float: left;
-    margin-left: 15%;
-    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .modal-title {
@@ -52,3 +50,24 @@ button {
     inset 0 0 6px #ff1919, 
     inset 0 0 12px #ff1919;
   }
+
+h3{
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1000px){
+    h3{
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 767px){
+   #option-cards{
+        margin-left: 70px;
+   }
+
+   .headeroptions{
+       margin-right: 50px;
+   }
+}
+
