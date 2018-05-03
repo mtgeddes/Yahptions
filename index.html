@@ -31,9 +31,9 @@
         <div class="modal zoomInDown animated show" id="searchModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-danger">
                         <button type="button" class="close" data-dismiss="modal" id="hideModal">&times;</button>   <!-- 'x' in top right corner -->
-                        <h4 class="modal-title">Find Yahptions</h4>
+                        <h4 class="modal-title" id="searchModalTitle">Find Yahptions</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">   <!-- Near me Button -->
@@ -183,15 +183,15 @@
                             <h3 id="restaurantDetail">Cuisine:</h3>
                             <h3 id="restaurantDetail">Address</h3>
                             <h3 id="restaurantDetail">Phone #:</h3>
-                            <h3 id="restaurantDetail">www.restaurantlinkhere.com</h3>
+                            <h3 id="restaurantDetail">URL:</h3>
                         </div>
                         <div class="modal-footer">
                             <!-- Use the heart icon here -->
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                             </button>
                             <!-- Close button -->
-                            <button type="button" class="btn btn-default closeUserSelection" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger closeUserSelection" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-center">
                         </div>
                         <div class="modal-footer">
                             <!-- Close button -->
@@ -232,9 +232,9 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body text-center">
                         <h4 id="infoDetail">Phone #:</h4>
-                        <h4 id="infoDetail">url:</h4>
+                        <h4 id="infoDetail">URL:</h4>
                     </div>
                     <div class="modal-footer">
                         <!-- Close button -->
