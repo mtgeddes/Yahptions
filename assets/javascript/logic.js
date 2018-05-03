@@ -156,10 +156,12 @@ function reRoll() {
   
 // Reroll options function
 $("#reroll").on("click", reRoll);
+
 // Closes the search Modal
 $(".close").on("click", function() {
     $("#searchModal").hide();
 });
+
 // Opens the search Modal
 $(".open").on("click", function() {
     $("#searchModal").show();
@@ -188,6 +190,7 @@ $("#readyBtn").on("click", function() {
     if (($('#nearMeBtn').is(':checked') || ($('#zipCodeBtn').is(':checked') && zipCode.length == 5)) && selectedRadius > 0 ) {
         $("#searchModal").removeClass().addClass("modal show zoomOut animated");
         $(".modal-title").html("Find Yahptions");
+        $(".float-bubble").hide();
         if ($("#nearMeBtn").is(':checked')) {
             getLatLongbyNearme();
         } else {
