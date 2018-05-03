@@ -6,6 +6,7 @@ $(window).on("load", function(){  // Waits until HTML is loaded before proceedin
     var radius;
     var zipCode;
     var counter = 0;
+
 // Button to reload page
 $('#reroll').on("click", function() {
     if (eliminated.length == 4) {
@@ -13,6 +14,7 @@ $('#reroll').on("click", function() {
         console.log("restart")
     }
 });
+
 function getLatLongbyZipcode() {
     $('#mainPage').css('opacity', 'unset');
     console.log("getLatLongbyZipcode has been fired!");
@@ -29,6 +31,7 @@ function getLatLongbyZipcode() {
         }
     });
 }
+  
 function getLatLongbyNearme() {
     $('#mainPage').css('opacity', 'unset');
      // Begin Ipdata api call; display current zip code
@@ -45,6 +48,7 @@ function getLatLongbyNearme() {
         }
     });
 }
+
 function getRestaurants() {
     console.log("getRestaurants has been fired!");
     console.log("Latitude: " + latitude);
@@ -89,6 +93,7 @@ function getRestaurants() {
         }
     });
 }
+  
 function displayRestaurants() {
     console.log("displayRestaurants has been fired!");
     for (var i=0; i<=4; i++) {
@@ -102,6 +107,7 @@ function displayRestaurants() {
         }
     }
 }
+
 function reRoll() {
     console.log("reRoll has been fired!");
     z=0;
@@ -125,6 +131,7 @@ function reRoll() {
         counter++;
     }
 }
+  
 // Reroll options function
 $("#reroll").on("click", reRoll);
 // Closes the search Modal
@@ -147,24 +154,29 @@ $("#readyBtn").on("click", function() {
         getLatLongbyZipcode();
     }
 })
+  
 // Opens search modal
 $("#showModal").on("click", function() {
     $("#searchModal").removeClass().addClass("modal show zoomInDown animated");
     $('#mainPage').css('opacity', '.3');
 });
+  
 // Hides search modal
 $("#hideModal").on("click", function() {
     $("#searchModal").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
 });
+  
 // Closes the chosen restaurant Modal
 $(".closeUserSelection").on("click", function() {
     $("#userSelection").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
 });
+  
 // Variables to keep track of chosen and eliminated phases
 var chosen = [];
 var eliminated = [];
+  
 // Choose and eliminate function...
 $(".cardclass").on("click", function() {
     var state = $(this).attr("data-state");
@@ -199,6 +211,7 @@ $(".cardclass").on("click", function() {
         }
     }
 })
+  
 // Shows user on hover what they're about to lockin
 $(".cardclass").hover(function(){
     var state = $(this).attr("data-state");
@@ -213,6 +226,7 @@ $(".cardclass").hover(function(){
         }
     }
 );
+  
 // Shows user on hover what they're about to eliminate
 $(".cardclass").hover(function(){
     var state = $(this).attr("data-state");
@@ -255,6 +269,7 @@ function putFavoritesOnPage() {
         $("#favorites").append(p);
     }
 }
+  
 putFavoritesOnPage();
 // Deletes past favorites
 $(document).on("click", "button.delete", function() {
@@ -266,6 +281,7 @@ $(document).on("click", "button.delete", function() {
     localStorage.setItem("favoriteRestaurants", JSON.stringify(restaurantList));
     putFavoritesOnPage();
 });
+  
 // Makes a restaurant a favorite
 $(".heart").on("click", function(event) {
     event.preventDefault();
