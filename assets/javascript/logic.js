@@ -61,6 +61,9 @@ function getRestaurants() {
     var locationType = "city";
     var page1 = 0;
     var page2 = 20;
+    var page3 = 40;
+    var page4 = 60;
+    var page5 = 80;
     var searchURL =  "https://developers.zomato.com/api/v2.1/search?"
                     //+ "user-key=" + apiKey 
                     + "&lat=" + latitude
@@ -68,6 +71,9 @@ function getRestaurants() {
                     + "&radius=" + parseInt(radius / 0.00062137) * 1.24  // convert miles to meters with a min of 2,000 M
     var zomatoURL1 = searchURL + "&start=" + page1;
     var zomatoURL2 = searchURL + "&start=" + page2;
+    var zomatoURL3 = searchURL + "&start=" + page3;
+    var zomatoURL4 = searchURL + "&start=" + page4;
+    var zomatoURL5 = searchURL + "&start=" + page5;
     $.ajax({  // Fire the api call to get the restaurants; page 1
         url: zomatoURL1,
         dataType: 'json',
@@ -89,15 +95,58 @@ function getRestaurants() {
                         restaurantsArray.push(data2.restaurants[i]);
                     }
                     console.log(restaurantsArray);
-                    displayRestaurants();
                 }
             });
+            $.ajax({  // Fire the api call to get the restaurants; page 3
+                url: zomatoURL3,
+                dataType: 'json',
+                async: true,
+                beforeSend: function(xhr){xhr.setRequestHeader('user-key', 'aabf39b370ad7219908488f6fbaa652c');},  // This inserts the api key into the HTTP header
+                success: function(data3) {  // Then do the following...
+                    console.log(zomatoURL3);
+                    for (i = 0; i < data3.restaurants.length; i++) {
+                        restaurantsArray.push(data3.restaurants[i]);
+                    }
+                    console.log(restaurantsArray);
+                }
+            });
+            $.ajax({  // Fire the api call to get the restaurants; page 4
+                url: zomatoURL4,
+                dataType: 'json',
+                async: true,
+                beforeSend: function(xhr){xhr.setRequestHeader('user-key', 'aabf39b370ad7219908488f6fbaa652c');},  // This inserts the api key into the HTTP header
+                success: function(data4) {  // Then do the following...
+                    console.log(zomatoURL4);
+                    for (i = 0; i < data4.restaurants.length; i++) {
+                        restaurantsArray.push(data4.restaurants[i]);
+                    }
+                    console.log(restaurantsArray);
+                }
+            });
+            $.ajax({  // Fire the api call to get the restaurants; page 5
+                url: zomatoURL5,
+                dataType: 'json',
+                async: true,
+                beforeSend: function(xhr){xhr.setRequestHeader('user-key', 'aabf39b370ad7219908488f6fbaa652c');},  // This inserts the api key into the HTTP header
+                success: function(data5) {  // Then do the following...
+                    console.log(zomatoURL5);
+                    for (i = 0; i < data5.restaurants.length; i++) {
+                        restaurantsArray.push(data5.restaurants[i]);
+                    }
+                    console.log(restaurantsArray);
+                }
+            });
+            displayRestaurants();
         }
     });
 }
   
 function displayRestaurants() {
     console.log("displayRestaurants has been fired!");
+    for (let i = restaurantsArray.length - 1; i > 0; i--) {   // Shuffles the restaurant array
+        let j = Math.floor(Math.random() * (i + 1));
+        [restaurantsArray[i], restaurantsArray[j]] = [restaurantsArray[j], restaurantsArray[i]];
+    }
     chosen = [];
     eliminated = [];
     counter = 0;
@@ -124,12 +173,33 @@ function displayRestaurants() {
 function reRoll() {
     console.log("reRoll has been fired!")
     console.log("Counter: " + counter);
-    if (counter > restaurantsArray.length-1) {
-        $('#reroll-message').html('No more restaurants! You\'re hopeless...just eat ramen!!');
+    if (counter == 25) {
+        $('#reroll-message').html('Still looking??');
         $('#reroll-message').show();
         setTimeout(() => {
             $('#reroll-message').hide();
-        }, 5000);
+        }, 3000);
+    }
+    if (counter == 50) {
+        $('#reroll-message').html('You\'re hopeless...just eat ramen!!');
+        $('#reroll-message').show();
+        setTimeout(() => {
+            $('#reroll-message').hide();
+        }, 3000);
+    }
+    if (counter == 80) {
+        $('#reroll-message').html('Almost out of restaurants!');
+        $('#reroll-message').show();
+        setTimeout(() => {
+            $('#reroll-message').hide();
+        }, 3000);
+    }
+    if (counter >= 99) {
+        $('#reroll-message').html('Make a decision already!');
+        $('#reroll-message').show();
+        setTimeout(() => {
+            $('#reroll-message').hide();
+        }, 3000);
         counter = 0;
     }
     z=0;
@@ -191,6 +261,7 @@ $("#readyBtn").on("click", function() {
         $("#searchModal").removeClass().addClass("modal show zoomOut animated");
         $(".modal-title").html("Find Yahptions");
         $(".float-bubble").hide();
+        $("#reroll").text("Re-Roll");
         if ($("#nearMeBtn").is(':checked')) {
             getLatLongbyNearme();
         } else {
