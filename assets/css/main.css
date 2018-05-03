@@ -197,3 +197,58 @@ h3 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 25px;
 }
+
+.start {
+    color: rgb(228, 59, 59);
+    font-weight: bolder;
+}
+
+.float-bubble {
+    /* -webkit-animation: floatBubble infinite 4s ease-in-out; */
+    animation: floatBubble infinite 4s ease-in-out;
+    animation-fill-mode: forwards;
+    max-width: 50px;
+    height: 50px;
+  }
+
+.arrowimage {
+    background-image: url("../images/arrow.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 50px;
+    height: 50px;
+}
+
+  @-moz-keyframes floatBubble {
+    0% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  @-webkit-keyframes floatBubble {
+    0% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes floatBubble {
+    0% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
