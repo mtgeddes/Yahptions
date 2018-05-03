@@ -6,33 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
          <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
         <!-- Google Maps Api -->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCHoSx4CUYHvy25J2KygnUXH5MtnvvmNbc"></script>
   
         <!-- Local scripting -->
         <script src="./assets/javascript/logic.js"></script>
-
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
         <!-- Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
         <!-- Local styling -->
         <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
         <link rel="stylesheet" type="text/css" href="./assets/css/animate.css" />
-
         <!--Google Font-->
         <link href="https://fonts.googleapis.com/css?family=Lato:900" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
         <!-- Begin Search Modal -->
@@ -72,158 +64,188 @@
             </div>
         </div>
         <!-- End Search Modal -->
-
         <!-- Begin Main Page -->
         <div id="mainPage">
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="header">
-                    <h1>Yahptions</h1>
-                    <p>Choose each of the restaurants from the options displayed below that you would like to consider eating at by clicking on them. When they light up green, you have selected that restuarant. 
-                        If you would like more options, click the re-roll button at the bottom of the page. Once you have chosen five restaurants that you want to consider, click again on the first restaurant that you 
-                        want to eliminate from consideration. Once a restaurant is eliminated, it will light up red. When you are down to only one option, your option and its information will be displayed.
-                    </p>
+            <div class="row">
+                <div class="col-xs-10">
+                    <div class="header">
+                        <h1>Yahptions</h1>
+                        <p class="rules">Choose each of the restaurants from the options displayed below that you would like to consider eating at by clicking on them. When they light up green, you have selected that restuarant. 
+                            If you would like more options, click the re-roll button at the bottom of the page. Once you have chosen five restaurants that you want to consider, click again on the first restaurant that you 
+                            want to eliminate from consideration. Once a restaurant is eliminated, it will light up red. When you are down to only one option, your option and its information will be displayed.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="headeroptions">
+                        <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" id="showModal" aria-label="Left Align"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-2">
-                <div class="headeroptions">
-                    <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                    <button type="button" class="btn btn-default" id="showModal" aria-label="Left Align"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button>
+            
+            <div id="option-cards">    
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-12 col-sm-2 options">
+                        <div class="option-0" search-result="">
+                            <div class="cardclass handpointer" data-state="chooseRestaurant">
+                            <h3 class="restaurantName">Restaurant1 Restaurant</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200X300" class="img-responsive">
+                            </div>
+                            <div class="optionButtons">
+                                <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 options">
+                        <div class="option-1" search-result="">
+                            <div class="cardclass handpointer" data-state="chooseRestaurant">
+                            <h3 class="restaurantName">Restaurant2 Restaurant</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <div class="optionButtons">
+                                <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 options">
+                        <div class="option-2" search-result="">
+                            <div class="cardclass handpointer" data-state="chooseRestaurant">
+                            <h3 class="restaurantName">Restaurant3</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <div class="optionButtons">
+                                <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 options">
+                        <div class="option-3" search-result="">
+                            <div class="cardclass handpointer" data-state="chooseRestaurant">
+                            <h3 class="restaurantName">Restaurant4</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <div class="optionButtons">
+                                <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 options">
+                        <div class="option-4" search-result="">
+                            <div class="cardclass handpointer" data-state="chooseRestaurant">
+                            <h3 class="restaurantName">Restaurant5</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <div class="optionButtons">
+                                <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" id="reroll" class="btn btn-default">re-roll</button>
+                    </div>
+                </div>
+                <div class="row" id="favorites">
+                    Favorites
                 </div>
             </div>
         </div>
-        
-        <div id="option-cards">    
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-12 col-sm-2 cardclass" data-state="chooseRestaurant">
-                    <div class="option-0" search-result="">
-
-                        <h3 class="restaurantName">Restaurant1</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200X300" class="img-responsive">
-
-                        <div class="optionButtons">
-                            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-2 cardclass" data-state="chooseRestaurant">
-                    <div class="option-1" search-result="">
-
-                        <h3 class="restaurantName">Restaurant2</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-
-                        <div class="optionButtons">
-                            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-2 cardclass" data-state="chooseRestaurant">
-                    <div class="option-2" search-result="">
-
-                        <h3 class="restaurantName">Restaurant3</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-
-                        <div class="optionButtons">
-                            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-2 cardclass" data-state="chooseRestaurant">
-                    <div class="option-3" search-result="">
-
-                        <h3 class="restaurantName">Restaurant4</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-
-                        <div class="optionButtons">
-                            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-2 cardclass" data-state="chooseRestaurant">
-                    <div class="option-4" search-result="">
-
-                        <h3 class="restaurantName">Restaurant5</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-
-                        <div class="optionButtons">
-                            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-1"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button type="button" id="reroll" class="btn btn-default">re-roll</button>
-                </div>
-            </div>
-            <div class="row" id="favorites">
-                Favorites
-            </div>
-        </div>
-    </div>
-    </div>
+    
         <!-- End Main Page -->
-
-        <!-- open modal on click of pic -->
-        <a href="#" data-toggle="modal" data-target="#userSelection"></a>
-        <!-- Final UserSelection Modal-->
-        <div class="modal fade" id="userSelection" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalTitle">Your Yahptions</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="closeUserSelection">×</span>
-                    </button>
+ 
+        <!-- #userSelection -->
+            <!-- open modal on click of pic -->
+            <a href="#" data-toggle="modal" data-target="#userSelection"></a>
+            <!-- Final UserSelection Modal-->
+            <div class="modal fade" id="userSelection" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title" id="modalTitle">Your Yahption</h4>
+                                <button type="button" class="close closeUserSelection" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h3 id="restaurantName">Restaurant Name</h3>
+                            <img src="https://res.cloudinary.com/sdawson/image/upload/v1525052025/food_placeholder_mbzmzn.png"
+                                 alt="placeholder" id="restPlaceholder">
+                            <h3 id="restaurantDetail">Rating:</h3>
+                            <h3 id="restaurantDetail">Cuisine:</h3>
+                            <h3 id="restaurantDetail">Address</h3>
+                            <h3 id="restaurantDetail">Phone #:</h3>
+                            <h3 id="restaurantDetail">www.restaurantlinkhere.com</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Use the heart icon here -->
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                            </button>
+                            <!-- Close button -->
+                            <button type="button" class="btn btn-default closeUserSelection" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
-
-<<<<<<< HEAD
-    <!-- open modal on click of pic -->
-    <a href="#" data-toggle="modal" data-target="#userSelection"></a>
-    <!-- Final UserSelection Modal-->
-    <div class="modal fade" id="userSelection" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true"> -->
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header modal-header-danger">
-                    <h4 class="modal-title" id="modalTitle">Your Yahptions</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </div>
+            <!-- End user selection modal -->
+      
+            <!-- Begin favorites modal -->
+            <!-- open modal on click of heart icon -->
+            <a href="#" data-toggle="modal" data-target="#fav"></a>
+            <!--  favorites modal -->
+            <div class="modal fade" id="fav" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title" id="modalTitle">Favorites</h4>
+                            <button type="button" class="close" data-dismiss="modal" id="hideModal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Close button -->
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="hideModal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- End favorites modal -->
+        <!-- Begin info modal -->
+        <!-- info modal -->
+        <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title" id="modalTitle">More info</h4>
+                        <button type="button" class="close" data-dismiss="modal" id="hideModal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
-                </div>
-
-                <div class="modal-body">
-                    <h3>Restaurant Name</h3>
-                    <img src="https://res.cloudinary.com/sdawson/image/upload/v1525052025/food_placeholder_mbzmzn.png"
-                        class="img-responsive" alt="placeholder" id="restPlaceholder">
-                    <h3>Rating:</h3>
-                    <h3>Cuisine:</h3>
-                    <h3>Address</h3>
-                    <h3>Phone#</h3>
-                    <h3>Web link</h3>
-                </div>
-
-                <div class="modal-footer">
-                    <!-- Use the heart icon here -->
-                    <button type="button" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                    </button>
-                    <!-- Close button -->
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="infoDetail">Phone #:</h4>
+                        <h4 id="infoDetail">url:</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- Close button -->
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="hideModal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- End info modal -->
+       
 
     </div>
-
 </body>
 </html>
