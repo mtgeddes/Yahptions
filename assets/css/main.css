@@ -63,6 +63,7 @@ button {
     position: relative;
     box-sizing: border-box;
     float: left;
+}
 
 .borderchosen {
     border: 3px solid #0cd808;

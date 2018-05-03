@@ -142,16 +142,46 @@ $(".close").on("click", function() {
 $(".open").on("click", function() {
     $("#searchModal").show();
 });
+
+// Prevents user input for zip code to be anything other than numbers or a length more than 5
+$("#zipCodeText").keyup(function (){
+    var theKeyCode = event.keyCode;
+    var str = $("#zipCodeText").val();
+    if (theKeyCode >= 48 && theKeyCode <= 57 && str.length < 6|| theKeyCode >= 96 && theKeyCode <= 105 && str.length < 6) {
+    }   
+    else {
+        str = str.substring(0, str.length - 1);
+        $("#zipCodeText").val(str)
+    }
+})
+ 
 // Submits the results of the search Modal and hides it
 $("#readyBtn").on("click", function() {
-    $("#searchModal").removeClass().addClass("modal show zoomOut animated");
     restaurantsArray = [];
     radius = $("#radiusBtn").attr("value") * 8050;
-    
-    if ($("#nearMeBtn").is(':checked')) {
-        getLatLongbyNearme();
-    } else {
-        getLatLongbyZipcode();
+    var zipCode = $("#zipCodeText").val();
+    var chosenRadius = $("#radiusBtn").val()
+    var selectedRadius = parseInt(chosenRadius)
+
+    if (($('#nearMeBtn').is(':checked') || ($('#zipCodeBtn').is(':checked') && zipCode.length == 5)) && selectedRadius > 0 ) {
+        $("#searchModal").removeClass().addClass("modal show zoomOut animated");
+        $(".modal-title").html("Find Yahptions");
+        if ($("#nearMeBtn").is(':checked')) {
+            getLatLongbyNearme();
+        } else {
+            getLatLongbyZipcode();
+        }
+    }
+    else if ($("#nearMeBtn").is(':checked') || $('#zipCodeBtn').is(':checked') && zipCode.length == 5) {
+        $(".modal-title").html("Find Yahptions --- Choose a <strong>Radius</strong>");
+    }
+
+    else if (selectedRadius >= 1) {
+        $(".modal-title").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong>");
+    }
+
+    else {
+        $(".modal-title").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits");
     }
 })
   
