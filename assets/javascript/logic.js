@@ -195,12 +195,20 @@ $("#readyBtn").on("click", function() {
         $(".modal-title").html("Find Yahptions --- Choose a <strong>Radius</strong>");
     }
 
+    else if ($('#zipCodeBtn').is(':checked') && selectedRadius >= 1) {
+        $(".modal-title").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits");
+    }
+
     else if (selectedRadius >= 1) {
         $(".modal-title").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong>");
     }
 
+    else if ($('#zipCodeBtn').is(':checked')) {
+        $(".modal-title").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits and a <strong>Radius</strong> must be selected");
+    }
+
     else {
-        $(".modal-title").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits");
+        $(".modal-title").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong> and a <strong>Radius</strong>");
     }
 })
   
