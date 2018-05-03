@@ -96,36 +96,55 @@ function getRestaurants() {
   
 function displayRestaurants() {
     console.log("displayRestaurants has been fired!");
+    chosen = [];
+    eliminated = [];
+    counter = 0;
+    $("#reroll").show();
+    $('#reroll-message').hide();
     for (var i=0; i<=4; i++) {
-        console.log("Counter:" + counter);
-        if ($('.option-' + counter + ' .cardclass').attr('data-state') == "chooseRestaurant" ) {
-            $('.option-' + counter).attr('search-result', counter);
-            $('.option-' + counter + ' h3').text(restaurantsArray[counter].restaurant.name);
-            $('.option-' + counter + ' img').attr('src', restaurantsArray[counter].restaurant.featured_image)
-            $('.option-' + counter).append('<h4 id="cuisines">' + restaurantsArray[counter].restaurant.cuisines + '</h4>').append('<h4 id="rating">Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span></h4>');
-            counter++
+        console.log("Counter:" + i);
+        $('.option-' + i).attr('search-result', i);
+        $('.option-' + i + ' .cardclass').removeClass('borderchosen').removeClass('bordereliminated').addClass('handpointer').css('opacity','unset');
+        $('.option-' + i + ' .cardclass').attr('data-state', 'chooseRestaurant');
+        $('.option-' + i + ' h3.restaurantName').text(restaurantsArray[i].restaurant.name);
+        if (restaurantsArray[i].restaurant.featured_image == "") {
+            $('.option-' + i + ' img').attr('src', './assets/images/featured_image.jpg');
+        } else {
+            $('.option-' + i + ' img').attr('src', restaurantsArray[i].restaurant.featured_image);
         }
+        $('.option-' + i + ' h4#cuisines').text(restaurantsArray[i].restaurant.cuisines);
+        $('.option-' + i + ' h4#rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+        counter++
     }
 }
 
 function reRoll() {
-    console.log("reRoll has been fired!");
+    console.log("reRoll has been fired!")
+    console.log("Counter: " + counter);
+    if (counter > restaurantsArray.length-1) {
+        $('#reroll-message').html('No more restaurants! You\'re hopeless...just eat ramen!!');
+        $('#reroll-message').show();
+        setTimeout(() => {
+            $('#reroll-message').hide();
+        }, 5000);
+        counter = 0;
+    }
     z=0;
     j=0;
     for (z=0; z<=4; z++) {
-        console.log("z = " + z);
-        console.log("Counter:" + counter);
         if ($('.option-' + z + ' .cardclass').attr('data-state') == "chooseRestaurant" ) {     
             $('.option-' + z).attr('search-result', counter);
         }
         for (j=0; j<=4; j++) {
             if ($('.option-' + z).attr('search-result') == counter ) { 
-                console.log("New Resturant if state is true! Counter:" + counter);
                 $('.option-' + z + ' h3').text(restaurantsArray[counter].restaurant.name);
-                $('.option-' + z + ' img').attr('src', restaurantsArray[counter].restaurant.featured_image)
+                if (restaurantsArray[counter].restaurant.featured_image == "") {
+                    $('.option-' + z + ' img').attr('src', './assets/images/featured_image.jpg');
+                } else {
+                    $('.option-' + z + ' img').attr('src', restaurantsArray[counter].restaurant.featured_image);
+                }
                 $('.option-' + z + ' #cuisines').text(restaurantsArray[counter].restaurant.cuisines)
                 $('.option-' + z + ' #rating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
-                console.log('Next restaurant: ' + restaurantsArray[counter].restaurant.name);  
             }
         }
         counter++;

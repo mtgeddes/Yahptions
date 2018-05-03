@@ -1,22 +1,30 @@
 button {
     margin: 7px;
 }
+
 #option-cards {
     position: relative;
     box-sizing: border-box;
     float: left;
 }
+
 .optionButtons {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
 }
+
 #reroll {
-    width: 16%;
-    margin-left: 42%;
-    margin-right: 42%;
+    width: 170px;
+    text-transform: capitalize;
     margin-top: 30px;
 }
+
+#reroll-message {
+    color: red;
+    font-weight: 700;
+}
+
 .modal-title {
         font-size: 20px;
 }
@@ -62,11 +70,12 @@ button {
 
 /*////////*/
 
-#option-cards{
+#option-cards {
     position: relative;
     box-sizing: border-box;
     float: left;
 }
+
 .borderchosen {
     border: 3px solid #0cd808;
     border-radius: 5px;
@@ -80,6 +89,7 @@ button {
     inset 0 0 6px #b3ff51, 
     inset 0 0 12px #b3ff51;
 }
+
 .bordereliminated {
     border: 3px solid #f90000;
     border-radius: 5px;
