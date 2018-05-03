@@ -1,4 +1,5 @@
 $(window).on("load", function(){  // Waits until HTML is loaded before proceeding with the rest
+    $('#option-cards').hide();
     $('#mainPage').css('opacity', '.3');
     var latitude;
     var longitude;
@@ -50,6 +51,7 @@ function getLatLongbyNearme() {
 }
 
 function getRestaurants() {
+    $('#option-cards').hide();
     console.log("getRestaurants has been fired!");
     console.log("Latitude: " + latitude);
     console.log("Longitude: " + longitude);
@@ -104,9 +106,9 @@ function displayRestaurants() {
     for (var i=0; i<=4; i++) {
         console.log("Counter:" + i);
         $('.option-' + i).attr('search-result', i);
-        $('.option-' + i + ' .cardclass').removeClass('borderchosen').removeClass('bordereliminated').addClass('handpointer').css('opacity','unset');
-        $('.option-' + i + ' .cardclass').attr('data-state', 'chooseRestaurant');
-        $('.option-' + i + ' h3.restaurantName').text(restaurantsArray[i].restaurant.name);
+        $('.option-' + i).removeClass('borderchosen').removeClass('bordereliminated').addClass('handpointer').css('opacity','unset');
+        $('.option-' + i).attr('data-state', 'chooseRestaurant');
+        $('.option-' + i + ' .cardclass h3.restaurantName').text(restaurantsArray[i].restaurant.name);
         if (restaurantsArray[i].restaurant.featured_image == "") {
             $('.option-' + i + ' img').attr('src', './assets/images/featured_image.jpg');
         } else {
@@ -116,6 +118,7 @@ function displayRestaurants() {
         $('.option-' + i + ' h4#rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
         counter++
     }
+    $('#option-cards').show();
 }
 
 function reRoll() {
@@ -132,7 +135,7 @@ function reRoll() {
     z=0;
     j=0;
     for (z=0; z<=4; z++) {
-        if ($('.option-' + z + ' .cardclass').attr('data-state') == "chooseRestaurant" ) {     
+        if ($('.option-' + z).attr('data-state') == "chooseRestaurant" ) {     
             $('.option-' + z).attr('search-result', counter);
         }
         for (j=0; j<=4; j++) {
@@ -235,7 +238,7 @@ var chosen = [];
 var eliminated = [];
   
 // Choose and eliminate function...
-$(".cardclass").on("click", function() {
+$(".locationCard").on("click", function() {
     var state = $(this).attr("data-state");
     var eliminationRules = "Great! You've overcome the hardest part. Now, save that friendship and start by eliminating one at a time. Start with what you least desire...<small><small><small>or if you want to start a war, eliminate the one you know your friend really really wants.</small></small></small>"
     
@@ -270,7 +273,7 @@ $(".cardclass").on("click", function() {
 })
   
 // Shows user on hover what they're about to lockin
-$(".cardclass").hover(function(){
+$(".locationCard").hover(function(){
     var state = $(this).attr("data-state");
         if (state ==="chooseRestaurant") {
             $(this).addClass("borderchosen");
@@ -285,7 +288,7 @@ $(".cardclass").hover(function(){
 );
   
 // Shows user on hover what they're about to eliminate
-$(".cardclass").hover(function(){
+$(".locationCard").hover(function(){
     var state = $(this).attr("data-state");
         if (state ==="lockedin" && eliminated.length < 4 && chosen.length == 5) {
             $(this).addClass("bordereliminated");
