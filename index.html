@@ -90,25 +90,29 @@
                     <div class="col-12 col-sm-2 options">
                         <div class="option-0" search-result="">
                             <div class="cardclass handpointer" data-state="chooseRestaurant">
-                            <h3 class="restaurantName">Restaurant1 Restaurant</h3>
+                            <h3 class="restaurantName">Restaurant1</h3>
                                 <img id="placeholder" src="http://via.placeholder.com/200X300" class="img-responsive">
                             </div>
                             <div class="optionButtons">
                                 <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                             </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
                         </div>
                     </div>
                     <div class="col-12 col-sm-2 options">
                         <div class="option-1" search-result="">
                             <div class="cardclass handpointer" data-state="chooseRestaurant">
-                            <h3 class="restaurantName">Restaurant2 Restaurant</h3>
+                            <h3 class="restaurantName">Restaurant2</h3>
                                 <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
                             </div>
                             <div class="optionButtons">
                                 <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                             </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
                         </div>
                     </div>
                     <div class="col-12 col-sm-2 options">
@@ -121,6 +125,8 @@
                                 <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                             </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
                         </div>
                     </div>
                     <div class="col-12 col-sm-2 options">
@@ -133,6 +139,8 @@
                                 <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                             </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
                         </div>
                     </div>
                     <div class="col-12 col-sm-2 options">
@@ -145,13 +153,16 @@
                                 <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-default heart" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                             </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
                         </div>
                     </div>
                     <div class="col-xs-1"></div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button type="button" id="reroll" class="btn btn-default">re-roll</button>
+                <div class="row" id="rerollBtn">
+                    <div class="col-xs-12 text-center">
+                        <button type="button" id="reroll" class="btn btn-primary">re-roll</button>
+                        <h5 id="reroll-message"></h5>
                     </div>
                 </div>
                 <div class="row" id="favorites">
