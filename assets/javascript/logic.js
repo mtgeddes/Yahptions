@@ -392,7 +392,7 @@ $(".locationCard").on("click", function() {
         }
     }
     else if (eliminated.length == 4 && state === "lockedin") { // Shows the information on click of last restaurant
-        $("#userSelection").removeClass().addClass("modal show zoomInDown animated");
+        $("#infoModal-" + $(this).attr("search-result")).removeClass().addClass("modal show zoomInDown animated infoModal");
         $('#mainPage').css('opacity', '.3');
     }
     else if (state ==="lockedin" && chosen.length == 5 && eliminated.length < 5) { // Eliminates option...
@@ -407,12 +407,19 @@ $(".locationCard").on("click", function() {
                 var infoPanel = $("#infoModal-" + i);
                 var card = $(".option-" + i)
                 var cardState = $(".option-" + i).attr("data-state");
+                var name = $(".heartBtn-" + i).attr("data-name");  
+                var url = $(".heartBtn-" + i).attr("data-url");
                 if (cardState !== "eliminated") {
-                    console.log("infoModal-" + i);
                     infoPanel.removeClass().addClass("modal show zoomInDown animated infoModal");
+                    if (historyNameList.length < 6){
+                        historyNameList.push(name); 
+                        historyUrlList.push(url);   
+                        localStorage.setItem("historyRestaurantName", JSON.stringify(historyNameList));
+                        localStorage.setItem("historyRestaurantURL", JSON.stringify(historyUrlList));
+                        fillHistoryModal()
+                    }
                 }
             }
-
             $('#mainPage').css('opacity', '.3');
             $("#reroll").show();
             $("#reroll").text("Restart");
@@ -528,9 +535,10 @@ $(".favoriteThis").on("click", function(event) {
         //////////// End Local storage of favorites //////////////
         //////////////////////////////////////////////////////////
 
-            //////////////////////////////////////////////
-            ////// Start History Modal local storage /////
-            //////////////////////////////////////////////
+//////////////////////////////////////////////
+////// Start History Modal local storage /////
+//////////////////////////////////////////////
+
 var historyNameList = JSON.parse(localStorage.getItem("historyRestaurantName"));
 var historyUrlList = JSON.parse(localStorage.getItem("historyRestaurantURL"));
 
@@ -539,30 +547,41 @@ if (!Array.isArray(historyNameList)) {
     historyUrlList = [];
   }   
   
-
+// fills history modal with past results
 function fillHistoryModal() {
-    $("#favorites").empty(); // empties out the html
+    $("#history").empty(); // empties out the html
     var historyRestName = JSON.parse(localStorage.getItem("historyRestaurantName"));
     var historyRestURL = JSON.parse(localStorage.getItem("historyRestaurantURL"));
     if (!Array.isArray(historyRestName)) {
         historyRestName = [];
     }
+
+    if (historyNameList.length > 4) {
+        var historyNameMax = JSON.parse(localStorage.getItem("historyRestaurantName"));
+        var historyURLMax = JSON.parse(localStorage.getItem("historyRestaurantURL"));
+
+        historyNameMax.splice(0, 1);  
+        historyURLMax.splice(0, 1);
+        localStorage.setItem("historyRestaurantName", JSON.stringify(historyNameMax));
+        localStorage.setItem("historyRestaurantURL", JSON.stringify(historyURLMax));  
+    }
+
     for (var i = 0; i < historyRestName.length; i++) {
         var a = $("<p><button class='deleteHistory' data-index=" + i + ">X</button><a href=" + historyRestURL[i] + " target='_blank'>" + historyRestName[i] +"</a></p>");
-        $("#history").append(a);
+        $("#history").prepend(a);
     }
 }
 
 fillHistoryModal()
 
 // Deletes past history
-$(document).on("click", "button.delete", function() {
+$(document).on("click", "button.deleteHistory", function() {
     var historyName = JSON.parse(localStorage.getItem("historyRestaurantName"));
     var historyURL = JSON.parse(localStorage.getItem("historyRestaurantURL"));
     var currentIndex = $(this).attr("data-index");
 
-    historyName.splice(currentIndex, 1);   // Deletes the item marked for deletion
-    historyURL.splice(currentIndex, 1);    // Deletes the item marked for deletion
+    historyName.splice(currentIndex, 1);  
+    historyURL.splice(currentIndex, 1);    
     historyNameList = historyName;
     historyUrlList = historyURL;
     localStorage.setItem("historyRestaurantName", JSON.stringify(historyName));
@@ -570,21 +589,8 @@ $(document).on("click", "button.delete", function() {
     fillHistoryModal()
 });
 
-// adds to history
-function addToHistory () {
-    var name = $(this).attr("data-name"); 
-    var url = $(this).attr("data-url");
-
-    if (historyNameList.length < 6){
-        historyNameList.push(name); // Will want it to push array of array
-        historyUrlList.push(url);   // Will want it to push array of array
-        localStorage.setItem("restaurantName", JSON.stringify(historyNameList));
-        localStorage.setItem("restaurantURL", JSON.stringify(historyUrlList));
-        putFavoritesOnPage();
-    }   
-}
-            //////////////////////////////////////////////
-            ////// End History Modal local storage ///////
-            //////////////////////////////////////////////
+//////////////////////////////////////////////
+////// End History Modal local storage ///////
+//////////////////////////////////////////////
 
 }); // <--end of on page load. 
