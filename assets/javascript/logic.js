@@ -219,7 +219,7 @@ function reRoll() {
                 }
                 $('.option-' + z + ' #cuisines').text(restaurantsArray[counter].restaurant.cuisines)
                 $('.option-' + z + ' #rating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
-                $('.heartBtn-' + z).attr("data-name", restaurantsArray[counter].restaurant.name).attr("data-url", restaurantsArray[counter].restaurant.url);
+                $('.heartBtn-' + z).attr("data-name", restaurantsArray[counter].restaurant.name).attr("data-url", restaurantsArray[counter].restaurant.url).attr("data-clicked", "unclicked");
             }
         }
         counter++;
@@ -254,6 +254,22 @@ $(".hideFavModal").on("click", function() {
     $('#mainPage').css('opacity', 'unset');
 });
 
+
+// Opens the history modal
+$("#historyModalOpen").on("click", function () {
+    $("#historyModal").show()
+    $("#historyModal").removeClass().addClass("modal show zoomInDown animated");
+    $('#mainPage').css('opacity', '.3');
+})
+
+// Closes the history modal
+$(".hideHistoryModal").on("click", function() {
+    console.log("Working now")
+    $("#historyModal").hide();
+    $("#historyModal").removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
+});
+
 // Prevents user input for zip code to be anything other than numbers or a length more than 5
 $("#zipCodeText").keyup(function (){
     var theKeyCode = event.keyCode;
@@ -276,7 +292,7 @@ $("#readyBtn").on("click", function() {
 
     if (($('#nearMeBtn').is(':checked') || ($('#zipCodeBtn').is(':checked') && zipCode.length == 5)) && selectedRadius > 0 ) {
         $("#searchModal").removeClass().addClass("modal show zoomOut animated");
-        $(".modal-title").html("Find Yahptions");
+        $(".searchModalTitle").html("Find Yahptions");
         $(".float-bubble").hide();
         $("#reroll").text("Re-Roll");
         if ($("#nearMeBtn").is(':checked')) {
@@ -286,23 +302,23 @@ $("#readyBtn").on("click", function() {
         }
     }
     else if ($("#nearMeBtn").is(':checked') || $('#zipCodeBtn').is(':checked') && zipCode.length == 5) {
-        $(".modal-title").html("Find Yahptions --- Choose a <strong>Radius</strong>");
+        $(".searchModalTitle").html("Find Yahptions --- Choose a <strong>Radius</strong>");
     }
 
     else if ($('#zipCodeBtn').is(':checked') && selectedRadius >= 1) {
-        $(".modal-title").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits");
+        $(".searchModalTitle").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits");
     }
 
     else if (selectedRadius >= 1) {
-        $(".modal-title").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong>");
+        $(".searchModalTitle").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong>");
     }
 
     else if ($('#zipCodeBtn').is(':checked')) {
-        $(".modal-title").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits and a <strong>Radius</strong> must be selected");
+        $(".searchModalTitle").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits and a <strong>Radius</strong> must be selected");
     }
 
     else {
-        $(".modal-title").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong> and a <strong>Radius</strong>");
+        $(".searchModalTitle").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong> and a <strong>Radius</strong>");
     }
 })
   
@@ -355,7 +371,14 @@ $(".locationCard").on("click", function() {
         $(this).addClass("bordereliminated");
         $(this).attr("data-state", "eliminated");
         if (eliminated.length == 4) {   // Game is over, show the userSelection modal
-            $("#userSelection").removeClass().addClass("modal show zoomInDown animated");
+            for (var i = 0; i <= 4; i++) {
+                var infoPanel = $("#infoModal-" + i);
+                var card = $(".option-" + i)
+                var cardState = $(".option-" + i).attr("data-state");
+                if (!cardSate == "eliminated") {
+                    infoPanal.show();
+                }
+            }
             $('#mainPage').css('opacity', '.3');
             $("#reroll").show();
             $("#reroll").text("Restart");
@@ -392,9 +415,10 @@ $(".locationCard").hover(function(){
         }
     }
 );
-        ////////////////////////////////////////////////////
-        //////////// Local storage of favorites ////////////
-        //////////////////////////////////////////////////// 
+
+        //////////////////////////////////////////////////////////
+        //////////// Start Local storage of favorites ////////////
+        //////////////////////////////////////////////////////////
         
 // Creates variable for existing array in storage
 var favRestNameList = JSON.parse(localStorage.getItem("restaurantName"));
@@ -405,6 +429,7 @@ if (!Array.isArray(favRestNameList)) {
     favRestNameList = [];
     favRestUrlList = [];
   }
+
 
 // Puts favorites on page
 function putFavoritesOnPage() {
@@ -419,7 +444,7 @@ function putFavoritesOnPage() {
         $("#favorites").append(a);
     }
 }
-  
+
 putFavoritesOnPage();
 
 // Deletes past favorites
@@ -436,16 +461,89 @@ $(document).on("click", "button.delete", function() {
     localStorage.setItem("restaurantURL", JSON.stringify(restURL));
     putFavoritesOnPage();
 });
-  
+
 // Makes a restaurant a favorite
 $(".favoriteThis").on("click", function(event) {
     event.preventDefault();
     var name = $(this).attr("data-name"); 
-    var url = $(this).attr("data-url"); 
-    favRestNameList.push(name); // Will want it to push array of array
-    favRestUrlList.push(url);   // Will want it to push array of array
-    localStorage.setItem("restaurantName", JSON.stringify(favRestNameList));
-    localStorage.setItem("restaurantURL", JSON.stringify(favRestUrlList));
-    putFavoritesOnPage();
+    var url = $(this).attr("data-url");
+    var saved = $(this).attr("data-clicked");
+
+    if (saved == "saved") {
+        console.log("already clicked");
+    }
+
+    else if (favRestNameList.length < 6){
+        $(this).attr("data-clicked", "saved");
+        favRestNameList.push(name); // Will want it to push array of array
+        favRestUrlList.push(url);   // Will want it to push array of array
+        localStorage.setItem("restaurantName", JSON.stringify(favRestNameList));
+        localStorage.setItem("restaurantURL", JSON.stringify(favRestUrlList));
+        putFavoritesOnPage();
+    }   
 });
+
+        //////////////////////////////////////////////////////////
+        //////////// End Local storage of favorites //////////////
+        //////////////////////////////////////////////////////////
+
+            //////////////////////////////////////////////
+            ////// Start History Modal local storage /////
+            //////////////////////////////////////////////
+var historyNameList = JSON.parse(localStorage.getItem("historyRestaurantName"));
+var historyUrlList = JSON.parse(localStorage.getItem("historyRestaurantURL"));
+
+if (!Array.isArray(historyNameList)) {
+    historyNameList = [];
+    historyUrlList = [];
+  }   
+  
+
+function fillHistoryModal() {
+    $("#favorites").empty(); // empties out the html
+    var historyRestName = JSON.parse(localStorage.getItem("historyRestaurantName"));
+    var historyRestURL = JSON.parse(localStorage.getItem("historyRestaurantURL"));
+    if (!Array.isArray(historyRestName)) {
+        historyRestName = [];
+    }
+    for (var i = 0; i < historyRestName.length; i++) {
+        var a = $("<p><button class='deleteHistory' data-index=" + i + ">X</button><a href=" + historyRestURL[i] + " target='_blank'>" + historyRestName[i] +"</a></p>");
+        $("#history").append(a);
+    }
+}
+
+fillHistoryModal()
+
+// Deletes past history
+$(document).on("click", "button.delete", function() {
+    var historyName = JSON.parse(localStorage.getItem("historyRestaurantName"));
+    var historyURL = JSON.parse(localStorage.getItem("historyRestaurantURL"));
+    var currentIndex = $(this).attr("data-index");
+
+    historyName.splice(currentIndex, 1);   // Deletes the item marked for deletion
+    historyURL.splice(currentIndex, 1);    // Deletes the item marked for deletion
+    historyNameList = historyName;
+    historyUrlList = historyURL;
+    localStorage.setItem("historyRestaurantName", JSON.stringify(historyName));
+    localStorage.setItem("historyRestaurantURL", JSON.stringify(historyURL));
+    fillHistoryModal()
+});
+
+// adds to history
+function addToHistory () {
+    var name = $(this).attr("data-name"); 
+    var url = $(this).attr("data-url");
+
+    if (historyNameList.length < 6){
+        historyNameList.push(name); // Will want it to push array of array
+        historyUrlList.push(url);   // Will want it to push array of array
+        localStorage.setItem("restaurantName", JSON.stringify(historyNameList));
+        localStorage.setItem("restaurantURL", JSON.stringify(historyUrlList));
+        putFavoritesOnPage();
+    }   
+}
+            //////////////////////////////////////////////
+            ////// End History Modal local storage ///////
+            //////////////////////////////////////////////
+
 }); // <--end of on page load. 
