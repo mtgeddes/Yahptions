@@ -166,6 +166,18 @@ function displayRestaurants() {
         $('.option-' + i + ' h4#cuisines').text(restaurantsArray[i].restaurant.cuisines);
         $('.option-' + i + ' h4#rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
         $('.heartBtn-' + i).attr("data-name", restaurantsArray[i].restaurant.name).attr("data-url", restaurantsArray[i].restaurant.url);
+
+        $('#infoModal-' + i + ' h4#infoName').text(restaurantsArray[i].restaurant.name);
+        if (restaurantsArray[i].restaurant.featured_image == "") {
+            $('#infoModal-' + i + ' img#infoImg').attr('src', './assets/images/featured_image.jpg');
+        } else {
+            $('#infoModal-' + i + ' img#infoImg').attr('src', restaurantsArray[i].restaurant.featured_image);
+        }        
+        $('#infoModal-' + i + ' h4#infoRating').text('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating);
+        $('#infoModal-' + i + ' h4#infoCuisines').text(restaurantsArray[i].restaurant.cuisines);
+        $('#infoModal-' + i + ' h4#infoAddress').text(restaurantsArray[i].restaurant.location.address);
+        $('#infoModal-' + i + ' h4#infoURL').html('<a href="'+restaurantsArray[i].restaurant.url+'" target="_blank">Website</a>');
+
         counter++
     }
     $('#option-cards').show();
@@ -219,7 +231,20 @@ function reRoll() {
                 }
                 $('.option-' + z + ' #cuisines').text(restaurantsArray[counter].restaurant.cuisines)
                 $('.option-' + z + ' #rating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
+
                 $('.heartBtn-' + z).attr("data-name", restaurantsArray[counter].restaurant.name).attr("data-url", restaurantsArray[counter].restaurant.url).attr("data-clicked", "unclicked");
+
+
+                $('#infoModal-' + z + ' h4#infoName').text(restaurantsArray[counter].restaurant.name);
+                if (restaurantsArray[counter].restaurant.featured_image == "") {
+                    $('#infoModal-' + z + ' img#infoImg').attr('src', './assets/images/featured_image.jpg');
+                } else {
+                    $('#infoModal-' + z + ' img#infoImg').attr('src', restaurantsArray[counter].restaurant.featured_image);
+                }        
+                $('#infoModal-' + z + ' h4#infoRating').text('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating);
+                $('#infoModal-' + z + ' h4#infoCuisines').text(restaurantsArray[counter].restaurant.cuisines);
+                $('#infoModal-' + z + ' h4#infoAddress').text(restaurantsArray[counter].restaurant.location.address);
+                $('#infoModal-' + z + ' h4#infoURL').html('<a href="'+restaurantsArray[counter].restaurant.url+'" target="_blank">Website</a>');
             }
         }
         counter++;
@@ -331,6 +356,13 @@ $("#showModal").on("click", function() {
 // Hides search modal
 $("#hideModal").on("click", function() {
     $("#searchModal").removeClass().addClass("modal show zoomOut animated");
+    $('.modal').removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
+});
+
+// Closes the info modal that is currently displaying
+$(document).on("click", "#closeInfoModal", function() {
+    $('.infoModal').removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
 });
   
@@ -375,16 +407,25 @@ $(".locationCard").on("click", function() {
                 var infoPanel = $("#infoModal-" + i);
                 var card = $(".option-" + i)
                 var cardState = $(".option-" + i).attr("data-state");
-                if (!cardSate == "eliminated") {
-                    infoPanal.show();
+                if (cardState !== "eliminated") {
+                    console.log("infoModal-" + i);
+                    infoPanel.removeClass().addClass("modal show zoomInDown animated infoModal");
                 }
             }
+
             $('#mainPage').css('opacity', '.3');
             $("#reroll").show();
             $("#reroll").text("Restart");
         }
     }
 })
+
+// Shows the info modal of the corresponding location card
+$(".infoBtn").on("click", function() {
+    console.log('infoBtn-' + $(this).attr('data-index') + ' has been clicked!');
+    $('#infoModal-' + $(this).attr('data-index')).removeClass().addClass("modal show zoomInDown animated infoModal");
+});
+
   
 // Shows user on hover what they're about to lockin
 $(".locationCard").hover(function(){
