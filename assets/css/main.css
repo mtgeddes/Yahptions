@@ -224,6 +224,7 @@ h3.restaurantName {
     animation-fill-mode: forwards;
     max-width: 50px;
     height: 50px;
+    margin: auto;
   }
 
 .arrowimage {
