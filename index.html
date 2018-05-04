@@ -33,7 +33,7 @@
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
                         <button type="button" class="close" data-dismiss="modal" id="hideModal">&times;</button>   <!-- 'x' in top right corner -->
-                        <h4 class="modal-title" id="searchModalTitle">Find Yahptions</h4>
+                        <h4 class="modal-title searchModalTitle" id="searchModalTitle">Find Yahptions</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">   <!-- Near me Button -->
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="headeroptions">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" id="historyModalOpen" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heart" id="favModalOpen" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default" id="showModal" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         <div class="float-bubble">
@@ -85,7 +85,8 @@
                     </div>
                 </div>
             </div>
-            
+      
+         
             <div id="option-cards">    
                 <div class="row">
                 <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
@@ -232,6 +233,30 @@
                 </div>
             </div>
             <!-- End favorites modal -->
+
+        <!--  History modal -->
+        <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title" id="modalTitle">History Modal</h4>
+                        <button type="button" class="close hideHistoryModal" data-dismiss="modal" id="hideModal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div id="history">
+                            History
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- Close button -->
+                        <button type="button" class="btn btn-danger hideHistoryModal" data-dismiss="modal" id="hideModal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End History modal -->
 
         <!-- Begin Info Modals -->
         <!-- Info Modal 0 -->
