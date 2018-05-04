@@ -38,7 +38,7 @@
                     <div class="modal-body">
                         <div class="form-group">   <!-- Near me Button -->
                             <div class="radio">
-                                <label><input type="radio" name="radioBtn" id="nearMeBtn" value="Near Me">Near Me</label>
+                                <label><input type="radio" name="radioBtn" id="nearMeBtn" value="Near Me">Near Me<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></label>
                             </div>
                         </div>
                         <div class="form-group">   <!-- Zip Code Button -->
@@ -50,7 +50,7 @@
                             <label for="radiusBtn">Radius
                                 <select id="radiusBtn" class="custom-select" id="inputOptions" required>
                                 <option selected disabled>Choose...</option>
-                                <option value="1">1 Miles</option>
+                                <option value="1">1 Mile</option>
                                 <option value="5">5 Miles</option>
                                 <option value="10">10 Miles</option>
                                 </select>
@@ -67,16 +67,17 @@
         <!-- Begin Main Page -->
         <div id="mainPage">
             <div class="row">
-                <div class="col-xs-10">
+                <div class="col-xs-9">
                     <div class="header">
                         <h1><span><img class="dice" src="./assets/images/blackoutlinedice.jpg"></span>Yahptions</h1>
                         <p class="rules"></p>
                     </div>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-3">
                     <div class="headeroptions">
+                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heart" id="favModalOpen" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default" id="showModal" aria-label="Left Align"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" id="showModal" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         <div class="float-bubble">
                             <div class="arrowimage" style="transform: scaleY(-1)"> </div>
                             <div class="text-center form-group start">Start!</div>

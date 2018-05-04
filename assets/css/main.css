@@ -165,13 +165,22 @@ h3.restaurantName {
 }
   
 .glyphicon-heart {
-    color: rgb(228, 59, 59)
+    color: rgb(228, 59, 59);
 }
+
 
 /* Begin Media Queries */
 @media only screen and (min-width: 768px) and (max-width: 1000px){
     h3 {
         font-size: 15px;
+    }
+
+    .headeroptions{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-left: 100px;
+        max-width: 60px;
     }
 }
   
@@ -185,8 +194,11 @@ h3.restaurantName {
         margin-left: 20px;
     }
     .headeroptions {
-        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        max-width: 60px;
     }
+
     #reroll {
         width: 30%;
         margin-left: 35%;
@@ -245,6 +257,25 @@ h3.restaurantName {
     max-width: 50px;
     height: 50px;
 }
+
+.glyphicon-map-marker {
+    margin-left: 5px;
+    color: rgb(228, 59, 59);
+    font-size: 25px;
+}
+
+input[name="radioBtn"]:first-of-type {
+    margin-top: 12px;
+}
+
+.radio{
+    line-height: 30px;
+}
+
+#radiusBtn{
+    margin-top: 10px;
+}
+
 
   @-moz-keyframes floatBubble {
     0% {
