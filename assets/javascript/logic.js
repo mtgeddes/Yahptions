@@ -355,7 +355,6 @@ $(".locationCard").on("click", function() {
         $(this).addClass("bordereliminated");
         $(this).attr("data-state", "eliminated");
         if (eliminated.length == 4) {   // Game is over, show the userSelection modal
-            $("#userSelection h3 #restaurantName").text($(this + ' h3#restaurantName').text());
             $("#userSelection").removeClass().addClass("modal show zoomInDown animated");
             $('#mainPage').css('opacity', '.3');
             $("#reroll").show();
