@@ -177,15 +177,28 @@ function displayRestaurants() {
         $('.option-' + i + ' h4#rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
         $('.heartBtn-' + i).attr("data-name", restaurantsArray[i].restaurant.name).attr("data-url", restaurantsArray[i].restaurant.url);
 
-        $('#infoModal-' + i + ' h4#infoName').text(restaurantsArray[i].restaurant.name);
+        $('#infoModal-' + i + ' h3#infoName').text(restaurantsArray[i].restaurant.name);
         if (restaurantsArray[i].restaurant.featured_image == "") {
             $('#infoModal-' + i + ' img#infoImg').attr('src', './assets/images/featured_image.jpg');
         } else {
             $('#infoModal-' + i + ' img#infoImg').attr('src', restaurantsArray[i].restaurant.featured_image);
-        }        
-        $('#infoModal-' + i + ' h4#infoRating').text('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating);
+        }
+        $('#infoModal-' + i + ' h4#infoRating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+        if (restaurantsArray[i].restaurant.user_rating.aggregate_rating < 2.9) {
+            $('#infoModal-' + i + ' h4#infoRating').css('color', 'red');
+        } else if (restaurantsArray[i].restaurant.user_rating.aggregate_rating < 3.9) {
+            $('#infoModal-' + i + ' h4#infoRating').css('color', 'orange');
+        } else if (restaurantsArray[i].restaurant.user_rating.aggregate_rating <= 5) {
+            $('#infoModal-' + i + ' h4#infoRating').css('color', 'darkgreen');
+        }
+        $('#infoModal-' + i + ' h4#infoRating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
         $('#infoModal-' + i + ' h4#infoCuisines').text(restaurantsArray[i].restaurant.cuisines);
         $('#infoModal-' + i + ' h4#infoAddress').text(restaurantsArray[i].restaurant.location.address);
+        if (restaurantsArray[i].restaurant.average_cost_for_two == 0) {
+            $('#infoModal-' + i + ' h4#infoAverageCost').html('Average Cost: Cheap!' + '&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>');
+        } else {
+            $('#infoModal-' + i + ' h4#infoAverageCost').text('Average Cost: ' + restaurantsArray[i].restaurant.currency + restaurantsArray[i].restaurant.average_cost_for_two);
+        }
         $('#infoModal-' + i + ' h4#infoURL').html('<a href="'+restaurantsArray[i].restaurant.url+'" target="_blank">Website</a>');
 
         counter++
@@ -246,15 +259,28 @@ function reRoll() {
                 $('.heartBtn-' + z).attr("data-name", restaurantsArray[counter].restaurant.name).attr("data-url", restaurantsArray[counter].restaurant.url).attr("data-clicked", "unclicked");
 
 
-                $('#infoModal-' + z + ' h4#infoName').text(restaurantsArray[counter].restaurant.name);
+                $('#infoModal-' + z + ' h3#infoName').text(restaurantsArray[counter].restaurant.name);
                 if (restaurantsArray[counter].restaurant.featured_image == "") {
                     $('#infoModal-' + z + ' img#infoImg').attr('src', './assets/images/featured_image.jpg');
                 } else {
                     $('#infoModal-' + z + ' img#infoImg').attr('src', restaurantsArray[counter].restaurant.featured_image);
-                }        
-                $('#infoModal-' + z + ' h4#infoRating').text('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating);
+                }
+                $('#infoModal-' + z + ' h4#infoRating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+                if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating < 2.9) {
+                    $('#infoModal-' + z + ' h4#infoRating').css('color', 'red');
+                } else if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating < 3.9) {
+                    $('#infoModal-' + z + ' h4#infoRating').css('color', 'orange');
+                } else if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating <= 5) {
+                    $('#infoModal-' + z + ' h4#infoRating').css('color', 'darkgreen');
+                }
+                $('#infoModal-' + z + ' h4#infoRating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
                 $('#infoModal-' + z + ' h4#infoCuisines').text(restaurantsArray[counter].restaurant.cuisines);
                 $('#infoModal-' + z + ' h4#infoAddress').text(restaurantsArray[counter].restaurant.location.address);
+                if (restaurantsArray[counter].restaurant.average_cost_for_two == 0) {
+                    $('#infoModal-' + z + ' h4#infoAverageCost').html('Average Cost: Cheap!' + '&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>');
+                } else {
+                    $('#infoModal-' + z + ' h4#infoAverageCost').text('Average Cost: ' + restaurantsArray[counter].restaurant.currency + restaurantsArray[counter].restaurant.average_cost_for_two);
+                }
                 $('#infoModal-' + z + ' h4#infoURL').html('<a href="'+restaurantsArray[counter].restaurant.url+'" target="_blank">Website</a>');
             }
         }
@@ -511,7 +537,7 @@ function putFavoritesOnPage() {
         favRestName = [];
     }
     for (var i = 0; i < favRestName.length; i++) {
-        var a = $("<p><button class='delete' data-index=" + i + ">X</button><a href=" + favRestURL[i] + " target='_blank'>" + favRestName[i] +"</a></p>");
+        var a = $('<p><button class="delete" data-index="' + i + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><a href="' + favRestURL[i] + '" target="_blank">' + favRestName[i] + '</a></p>');
         $("#favorites").append(a);
     }
 }
@@ -590,7 +616,7 @@ function fillHistoryModal() {
     }
 
     for (var i = 0; i < historyRestName.length; i++) {
-        var a = $("<p><button class='deleteHistory' data-index=" + i + ">X</button><a href=" + historyRestURL[i] + " target='_blank'>" + historyRestName[i] +"</a></p>");
+        var a = $('<p><button class="deleteHistory" data-index="' + i + '"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span></button><a href=" + historyRestURL[i] + " target="_blank">' + historyRestName[i] + '</a></p>');
         $("#history").prepend(a);
     }
 }
