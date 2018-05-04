@@ -1,12 +1,14 @@
 $(window).on("load", function(){  // Waits until HTML is loaded before proceeding with the rest
-    $('#option-cards').hide();
-    $('#mainPage').css('opacity', '.3');
-    var latitude;
-    var longitude;
-    var restaurantsArray = [];
-    var radius;
-    var zipCode;
-    var counter = 0;
+
+$('#option-cards').hide();
+$('#mainPage').css('opacity', '.3');
+
+var latitude;
+var longitude;
+var restaurantsArray = [];
+var radius;
+var zipCode;
+var counter = 0;
 
 // Button to reload page
 $('#reroll').on("click", function() {
@@ -16,6 +18,11 @@ $('#reroll').on("click", function() {
     }
 });
 
+//////////////////////////////////////////////////
+//// Begin API Calls and organize gather info ////
+//////////////////////////////////////////////////
+
+// Get lattitude by zipcode
 function getLatLongbyZipcode() {
     $('#mainPage').css('opacity', 'unset');
     console.log("getLatLongbyZipcode has been fired!");
@@ -32,7 +39,8 @@ function getLatLongbyZipcode() {
         }
     });
 }
-  
+
+// Get logitude by zipcode
 function getLatLongbyNearme() {
     $('#mainPage').css('opacity', 'unset');
      // Begin Ipdata api call; display current zip code
@@ -50,6 +58,7 @@ function getLatLongbyNearme() {
     });
 }
 
+// Get restaurants from API
 function getRestaurants() {
     $('#option-cards').hide();
     console.log("getRestaurants has been fired!");
@@ -140,7 +149,8 @@ function getRestaurants() {
         }
     });
 }
-  
+
+// Load restaurants information onto page
 function displayRestaurants() {
     console.log("displayRestaurants has been fired!");
     for (let i = restaurantsArray.length - 1; i > 0; i--) {   // Shuffles the restaurant array
@@ -183,6 +193,7 @@ function displayRestaurants() {
     $('#option-cards').show();
 }
 
+// Pull from restaurant array to display new restaurants
 function reRoll() {
     console.log("reRoll has been fired!")
     console.log("Counter: " + counter);
@@ -250,50 +261,78 @@ function reRoll() {
         counter++;
     }
 }
-  
-// Reroll options function
-$("#reroll").on("click", reRoll);
 
-// Closes the search Modal
-$(".close").on("click", function() {
-    $("#searchModal").hide();
-});
+////////////////////////////////////////////////
+//// End API Calls and organize gather info ////
+////////////////////////////////////////////////
 
-// Opens the search Modal
-$(".open").on("click", function() {
+////////////////////////////////////////////////
+////// Start of "Open and Close" functions//////
+////////////////////////////////////////////////
+
+// Opens the SEARCH modal >>>
+$("#showSearchModal").on("click", function() {
     $("#searchModal").show();
+    $("#searchModal").removeClass().addClass("modal show zoomInDown animated");
+    $('#mainPage').css('opacity', '.3');
+});
+  
+// Closes the SEARCH modal <<<
+$("#hideSearchModal").on("click", function() {
+    $("#searchModal").hide();
+    $("#searchModal").removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
 });
 
-// Opens the favorites modal
-$("#favModalOpen").on("click", function () {
+// Opens the FAVORITES modal >>>
+$("#showFavoriteModal").on("click", function () {
     $("#favModal").show()
     $("#favModal").removeClass().addClass("modal show zoomInDown animated");
     $('#mainPage').css('opacity', '.3');
 })
 
-// Closes the favorite modal
-$(".hideFavModal").on("click", function() {
-    console.log("Working now")
+// Closes the FAVORITES modal <<<
+$(".hideFavoriteModal").on("click", function() {
     $("#favModal").hide();
     $("#favModal").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
 });
 
-
-// Opens the history modal
-$("#historyModalOpen").on("click", function () {
+// Opens the HISTORY modal >>>
+$("#showHistoryModal").on("click", function () {
     $("#historyModal").show()
     $("#historyModal").removeClass().addClass("modal show zoomInDown animated");
     $('#mainPage').css('opacity', '.3');
 })
-
-// Closes the history modal
+ 
+// Closes the HISTORY modal <<<
 $(".hideHistoryModal").on("click", function() {
-    console.log("Working now")
     $("#historyModal").hide();
     $("#historyModal").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
 });
+
+// Opens the INFO modal of the corresponding location card >>>
+$(".infoBtn").on("click", function() {
+    console.log('infoBtn-' + $(this).attr('data-index') + ' has been clicked!');
+    $('#infoModal-' + $(this).attr('data-index')).removeClass().addClass("modal show zoomInDown animated infoModal");
+});
+
+// Closes the INFO modal that is currently displaying <<<
+$(".closeInfoModal").on("click", function() {
+    var dataIndex = $(this).attr("data-index");
+    $("#infoModal-" + dataIndex).removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
+    console.log("works")
+});
+  
+//////////////////////////////////////////////
+////// End of "Open and Close" functions//////
+//////////////////////////////////////////////
+
+////////////////////////////////
+////// Begin Search Modal //////
+////////////////////////////////
 
 // Prevents user input for zip code to be anything other than numbers or a length more than 5
 $("#zipCodeText").keyup(function (){
@@ -346,32 +385,19 @@ $("#readyBtn").on("click", function() {
         $(".searchModalTitle").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong> and a <strong>Radius</strong>");
     }
 })
-  
-// Opens search modal
-$("#showModal").on("click", function() {
-    $("#searchModal").removeClass().addClass("modal show zoomInDown animated");
-    $('#mainPage').css('opacity', '.3');
-});
-  
-// Hides search modal
-$("#hideModal").on("click", function() {
-    $("#searchModal").removeClass().addClass("modal show zoomOut animated");
-    $('.modal').removeClass().addClass("modal show zoomOut animated");
-    $('#mainPage').css('opacity', 'unset');
-});
 
-// Closes the info modal that is currently displaying
-$(document).on("click", "#closeInfoModal", function() {
-    $('.infoModal').removeClass().addClass("modal show zoomOut animated");
-    $('#mainPage').css('opacity', 'unset');
-});
-  
-// Closes the chosen restaurant Modal
-$(".closeUserSelection").on("click", function() {
-    $("#userSelection").removeClass().addClass("modal show zoomOut animated");
-    $('#mainPage').css('opacity', 'unset');
-});
-  
+////////////////////////////////
+////// End Search Modal ////////
+////////////////////////////////
+
+
+//////////////////////////////////
+////// Start game functions //////
+//////////////////////////////////
+
+// Reroll options function
+$("#reroll").on("click", reRoll);
+
 // Variables to keep track of chosen and eliminated phases
 var chosen = [];
 var eliminated = [];
@@ -427,14 +453,7 @@ $(".locationCard").on("click", function() {
     }
 })
 
-// Shows the info modal of the corresponding location card
-$(".infoBtn").on("click", function() {
-    console.log('infoBtn-' + $(this).attr('data-index') + ' has been clicked!');
-    $('#infoModal-' + $(this).attr('data-index')).removeClass().addClass("modal show zoomInDown animated infoModal");
-});
-
-  
-// Shows user on hover what they're about to lockin
+// Shows user on hover what they're about to lock in
 $(".locationCard").hover(function(){
     var state = $(this).attr("data-state");
         if (state ==="chooseRestaurant") {
@@ -464,9 +483,13 @@ $(".locationCard").hover(function(){
     }
 );
 
-        //////////////////////////////////////////////////////////
-        //////////// Start Local storage of favorites ////////////
-        //////////////////////////////////////////////////////////
+////////////////////////////////
+////// End game functions //////
+////////////////////////////////
+
+/////////////////////////////////////////////////
+/////// Start Local storage of favorites ////////
+/////////////////////////////////////////////////
         
 // Creates variable for existing array in storage
 var favRestNameList = JSON.parse(localStorage.getItem("restaurantName"));
@@ -531,9 +554,9 @@ $(".favoriteThis").on("click", function(event) {
     }   
 });
 
-        //////////////////////////////////////////////////////////
-        //////////// End Local storage of favorites //////////////
-        //////////////////////////////////////////////////////////
+//////////////////////////////////////////////
+////// End Local storage of favorites ////////
+//////////////////////////////////////////////
 
 //////////////////////////////////////////////
 ////// Start History Modal local storage /////
@@ -547,7 +570,7 @@ if (!Array.isArray(historyNameList)) {
     historyUrlList = [];
   }   
   
-// fills history modal with past results
+// Fills history modal with past results
 function fillHistoryModal() {
     $("#history").empty(); // empties out the html
     var historyRestName = JSON.parse(localStorage.getItem("historyRestaurantName"));
@@ -572,7 +595,7 @@ function fillHistoryModal() {
     }
 }
 
-fillHistoryModal()
+fillHistoryModal() // Fills history modal with past results
 
 // Deletes past history
 $(document).on("click", "button.deleteHistory", function() {
