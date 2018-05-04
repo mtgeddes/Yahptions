@@ -41,7 +41,8 @@ button {
     padding-bottom: 10px;
     background: #E43B3B;
     border-radius: 5px;
-    width: 198px;
+    width: 98%;
+    margin: 0 auto;
 }
 
 #reroll {
