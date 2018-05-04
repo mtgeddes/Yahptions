@@ -9,8 +9,15 @@
 
 .locationCard {
     border: 1px solid darkgray;
-    min-width: 225px;
     height: 400px;
+    padding: 11px;
+    border-radius: 5px;
+}
+
+.outer-div {
+    position: relative;
+    min-width: 230px;
+    max-height: 400px;
 }
 
 .cardclass {
@@ -30,7 +37,11 @@ button {
 .optionButtons {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    transform: translate(1px, -52px);
+    padding-bottom: 10px;
+    background: #E43B3B;
+    border-radius: 5px;
+    width: 198px;
 }
 
 #reroll {
