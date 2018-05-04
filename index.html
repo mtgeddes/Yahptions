@@ -98,7 +98,7 @@
                         <h4 id="rating">Rating: </h4>
                     </div>
                     <div class="optionButtons">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default infoBtn" data-index="0" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heartBtn-0 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         <h4 id="rating">Rating: </h4>
                     </div>
                     <div class="optionButtons">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default infoBtn" data-index="1" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heartBtn-1 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         <h4 id="rating">Rating: </h4>
                     </div>
                     <div class="optionButtons">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default infoBtn" data-index="2" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heartBtn-2 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                         <h4 id="rating">Rating: </h4>
                     </div>
                     <div class="optionButtons">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default infoBtn" data-index="3" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heartBtn-3 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                         <h4 id="rating">Rating: </h4>
                     </div>
                     <div class="optionButtons">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default infoBtn" data-index="4" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-default heartBtn-4 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
                     </div>
                 </div>
@@ -232,29 +232,138 @@
                 </div>
             </div>
             <!-- End favorites modal -->
-        <!-- Begin info modal -->
-        <!-- info modal -->
-        <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+
+        <!-- Begin Info Modals -->
+        <!-- Info Modal 0 -->
+        <div class="modal fade" id="infoModal-0" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
                         <h4 class="modal-title" id="modalTitle">More info</h4>
-                        <button type="button" class="close" data-dismiss="modal" id="hideModal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                        <h4 id="infoDetail">Phone #:</h4>
-                        <h4 id="infoDetail">URL:</h4>
+                        <h4 id="infoName">Name: </h4>
+                        <p><img id="infoImg" class="img-responsive"></p>
+                        <h4 id="infoRating">Rating:</h4>
+                        <h4 id="infoCuisines">Type:</h4>
+                        <h4 id="infoAddress">Address:</h4>
+                        <h4 id="infoURL">URL:</h4>
                     </div>
                     <div class="modal-footer">
                         <!-- Close button -->
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="hideModal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End info modal -->
+
+        <!-- Info Modal 1 -->
+        <div class="modal fade infoModal" id="infoModal-1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title" id="modalTitle">More info</h4>
+                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4 id="infoName">Name: </h4>
+                            <p><img id="infoImg" class="img-responsive"></p>
+                            <h4 id="infoRating">Rating:</h4>
+                            <h4 id="infoCuisines">Type:</h4>
+                            <h4 id="infoAddress">Address:</h4>
+                            <h4 id="infoURL">URL:</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Close button -->
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Modal 2 -->
+        <div class="modal fade infoModal" id="infoModal-2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title" id="modalTitle">More info</h4>
+                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4 id="infoName">Name: </h4>
+                            <p><img id="infoImg" class="img-responsive"></p>
+                            <h4 id="infoRating">Rating:</h4>
+                            <h4 id="infoCuisines">Type:</h4>
+                            <h4 id="infoAddress">Address:</h4>
+                            <h4 id="infoURL">URL:</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Close button -->
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Modal 3 -->
+        <div class="modal fade infoModal" id="infoModal-3" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title" id="modalTitle">More info</h4>
+                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4 id="infoName">Name: </h4>
+                            <p><img id="infoImg" class="img-responsive"></p>
+                            <h4 id="infoRating">Rating:</h4>
+                            <h4 id="infoCuisines">Type:</h4>
+                            <h4 id="infoAddress">Address:</h4>
+                            <h4 id="infoURL">URL:</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Close button -->
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Modal 4 -->
+        <div class="modal fade infoModal" id="infoModal-4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title" id="modalTitle">More info</h4>
+                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4 id="infoName">Name: </h4>
+                            <p><img id="infoImg" class="img-responsive"></p>
+                            <h4 id="infoRating">Rating:</h4>
+                            <h4 id="infoCuisines">Type:</h4>
+                            <h4 id="infoAddress">Address:</h4>
+                            <h4 id="infoURL">URL:</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Close button -->
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- End Info Modals -->
        
 
     </div>
