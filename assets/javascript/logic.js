@@ -165,6 +165,7 @@ function displayRestaurants() {
         }
         $('.option-' + i + ' h4#cuisines').text(restaurantsArray[i].restaurant.cuisines);
         $('.option-' + i + ' h4#rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+        $('.heartBtn-' + i).attr("data-name", restaurantsArray[i].restaurant.name).attr("data-url", restaurantsArray[i].restaurant.url);
         counter++
     }
     $('#option-cards').show();
@@ -218,6 +219,7 @@ function reRoll() {
                 }
                 $('.option-' + z + ' #cuisines').text(restaurantsArray[counter].restaurant.cuisines)
                 $('.option-' + z + ' #rating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
+                $('.heartBtn-' + z).attr("data-name", restaurantsArray[counter].restaurant.name).attr("data-url", restaurantsArray[counter].restaurant.url);
             }
         }
         counter++;
@@ -235,6 +237,21 @@ $(".close").on("click", function() {
 // Opens the search Modal
 $(".open").on("click", function() {
     $("#searchModal").show();
+});
+
+// Opens the favorites modal
+$("#favModalOpen").on("click", function () {
+    $("#favModal").show()
+    $("#favModal").removeClass().addClass("modal show zoomInDown animated");
+    $('#mainPage').css('opacity', '.3');
+})
+
+// Closes the favorite modal
+$(".hideFavModal").on("click", function() {
+    console.log("Working now")
+    $("#favModal").hide();
+    $("#favModal").removeClass().addClass("modal show zoomOut animated");
+    $('#mainPage').css('opacity', 'unset');
 });
 
 // Prevents user input for zip code to be anything other than numbers or a length more than 5
@@ -379,52 +396,57 @@ $(".locationCard").hover(function(){
         ////////////////////////////////////////////////////
         //////////// Local storage of favorites ////////////
         //////////////////////////////////////////////////// 
+        
 // Creates variable for existing array in storage
-var favoriteList = JSON.parse(localStorage.getItem("favoriteRestaurants"));
+var favRestNameList = JSON.parse(localStorage.getItem("restaurantName"));
+var favRestUrlList = JSON.parse(localStorage.getItem("restaurantURL"));
+
 // creates local empty favorite list if one doesn't already exist
-if (!Array.isArray(favoriteList)) {
-    favoriteList = [];
+if (!Array.isArray(favRestNameList)) {
+    favRestNameList = [];
+    favRestUrlList = [];
   }
+
 // Puts favorites on page
 function putFavoritesOnPage() {
     $("#favorites").empty(); // empties out the html
-    var insidefavoriteList = JSON.parse(localStorage.getItem("favoriteRestaurants"));
-    if (!Array.isArray(insidefavoriteList)) {
-        insidefavoriteList = [];
+    var favRestName = JSON.parse(localStorage.getItem("restaurantName"));
+    var favRestURL = JSON.parse(localStorage.getItem("restaurantURL"));
+    if (!Array.isArray(favRestName)) {
+        favRestName = [];
     }
-    for (var i = 0; i < insidefavoriteList.length; i++) {
-        var p = $("<p>").text(insidefavoriteList[i]);
-        // [Create Later] will need an element created for each piece of data we want from restaurant
-        // I think it will look like this: 
-        // "insidefavoriteList[i].[i]"
-        // "insidefavoriteList[i].[i+1]"
-        // "insidefavoriteList[i].[i+2]"
-        var b = $("<button class='delete'>").text("x").attr("data-index", i);
-        p.prepend(b);
-        $("#favorites").append(p);
+    for (var i = 0; i < favRestName.length; i++) {
+        var a = $("<p><button class='delete' data-index=" + i + ">X</button><a href=" + favRestURL[i] + " target='_blank'>" + favRestName[i] +"</a></p>");
+        $("#favorites").append(a);
     }
 }
   
 putFavoritesOnPage();
+
 // Deletes past favorites
 $(document).on("click", "button.delete", function() {
-    var restaurantList = JSON.parse(localStorage.getItem("favoriteRestaurants"));
+    var restName = JSON.parse(localStorage.getItem("restaurantName"));
+    var restURL = JSON.parse(localStorage.getItem("restaurantURL"));
     var currentIndex = $(this).attr("data-index");
-    // Deletes the item marked for deletion
-    restaurantList.splice(currentIndex, 1);
-    favoriteList = restaurantList;
-    localStorage.setItem("favoriteRestaurants", JSON.stringify(restaurantList));
+
+    restName.splice(currentIndex, 1);   // Deletes the item marked for deletion
+    restURL.splice(currentIndex, 1);    // Deletes the item marked for deletion
+    favRestNameList = restName;
+    favRestUrlList = restURL
+    localStorage.setItem("restaurantName", JSON.stringify(restName));
+    localStorage.setItem("restaurantURL", JSON.stringify(restURL));
     putFavoritesOnPage();
 });
   
 // Makes a restaurant a favorite
-$(".heart").on("click", function(event) {
+$(".favoriteThis").on("click", function(event) {
     event.preventDefault();
-    // [Create Later] Need to create an array that will store multiple restaurant data attributes (i.e. name, website, phone, etc). 
-    var fav = $(this).text(); // [Create Later] Will need to change this to where restaurant name is located on HTML
-    // [Create Later] 
-    favoriteList.push(fav); // Will want it to push array of array
-    localStorage.setItem("favoriteRestaurants", JSON.stringify(favoriteList));
+    var name = $(this).attr("data-name"); 
+    var url = $(this).attr("data-url"); 
+    favRestNameList.push(name); // Will want it to push array of array
+    favRestUrlList.push(url);   // Will want it to push array of array
+    localStorage.setItem("restaurantName", JSON.stringify(favRestNameList));
+    localStorage.setItem("restaurantURL", JSON.stringify(favRestUrlList));
     putFavoritesOnPage();
 });
 }); // <--end of on page load. 
