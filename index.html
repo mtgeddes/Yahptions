@@ -32,7 +32,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
-                        <button type="button" class="close" data-dismiss="modal" id="hideModal">&times;</button>   <!-- 'x' in top right corner -->
+                        <button type="button" class="close" data-dismiss="modal" id="hideSearchModal">&times;</button>   <!-- 'x' in top right corner -->
                         <h4 class="modal-title searchModalTitle" id="searchModalTitle">Find Yahptions</h4>
                     </div>
                     <div class="modal-body">
@@ -75,9 +75,9 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="headeroptions">
-                        <button type="button" class="btn btn-default" id="historyModalOpen" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heart" id="favModalOpen" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default" id="showModal" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" id="showHistoryModal" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default heart" id="showFavoriteModal" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" id="showSearchModal" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         <div class="float-bubble">
                             <div class="arrowimage" style="transform: scaleY(-1)"> </div>
                             <div class="text-center form-group start">Start!</div>
@@ -171,70 +171,32 @@
     
         <!-- End Main Page -->
  
-        <!-- #userSelection -->
-            <!-- open modal on click of pic -->
-            <a href="#" data-toggle="modal" data-target="#userSelection"></a>
-            <!-- Final UserSelection Modal-->
-            <div class="modal fade" id="userSelection" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-                <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title" id="modalTitle">Your Yahption</h4>
-                                <button type="button" class="close closeUserSelection" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h3 id="restaurantName">Restaurant Name</h3>
-                            <img src="https://res.cloudinary.com/sdawson/image/upload/v1525052025/food_placeholder_mbzmzn.png"
-                                 alt="placeholder" id="restPlaceholder">
-                            <h3 id="restaurantDetail">Rating:</h3>
-                            <h3 id="restaurantDetail">Cuisine:</h3>
-                            <h3 id="restaurantDetail">Address</h3>
-                            <h3 id="restaurantDetail">Phone #:</h3>
-                            <h3 id="restaurantDetail">URL:</h3>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Use the heart icon here -->
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                            </button>
-                            <!-- Close button -->
-                            <button type="button" class="btn btn-danger closeUserSelection" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End user selection modal -->
       
-            <!-- Begin favorites modal -->
-            <!-- open modal on click of heart icon -->
-            <a href="#" data-toggle="modal" data-target="#fav"></a>
-            <!--  favorites modal -->
-            <div class="modal fade" id="favModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title" id="modalTitle">Favorites</h4>
-                            <button type="button" class="close hideFavModal" data-dismiss="modal" id="hideModal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
+        <!-- Begin Favorites modal -->
+        <div class="modal fade" id="favModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title" id="modalTitle">Favorites</h4>
+                        <button type="button" class="close hideFavoriteModal" data-dismiss="modal" id="hideModal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div id="favorites">
+                            Favorites
                         </div>
-                        <div class="modal-body text-center">
-                            <div id="favorites">
-                                Favorites
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Close button -->
-                            <button type="button" class="btn btn-danger hideFavModal" data-dismiss="modal" id="hideModal">Close</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- Close button -->
+                        <button type="button" class="btn btn-danger hideFavoriteModal" data-dismiss="modal" id="hideModal">Close</button>
                     </div>
                 </div>
             </div>
-            <!-- End favorites modal -->
+        </div>
+        <!-- End Favorites modal -->
 
-        <!--  History modal -->
+        <!-- Begin History modal -->
         <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -246,7 +208,6 @@
                     </div>
                     <div class="modal-body text-center">
                         <div id="history">
-                            History
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -265,7 +226,7 @@
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
                         <h4 class="modal-title" id="modalTitle">More info</h4>
-                        <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                        <button type="button" class="close closeInfoModal" data-index="0" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
@@ -279,7 +240,7 @@
                     </div>
                     <div class="modal-footer">
                         <!-- Close button -->
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                        <button type="button" class="btn btn-danger closeInfoModal" data-index="0" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -291,7 +252,7 @@
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
                             <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                            <button type="button" class="close closeInfoModal" data-index="1" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -305,19 +266,19 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Close button -->
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                            <button type="button" class="btn btn-danger closeInfoModal" data-index="1" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Info Modal 2 -->
+        <!-- Info Modal 2 -->
         <div class="modal fade infoModal" id="infoModal-2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
                             <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                            <button type="button" class="close closeInfoModal" data-index="2" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -331,19 +292,19 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Close button -->
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                            <button type="button" class="btn btn-danger closeInfoModal" data-index="2" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Info Modal 3 -->
+        <!-- Info Modal 3 -->
         <div class="modal fade infoModal" id="infoModal-3" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
                             <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                            <button type="button" class="close closeInfoModal" data-index="3" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -357,19 +318,19 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Close button -->
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                            <button type="button" class="btn btn-danger closeInfoModal" data-index="3" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Info Modal 4 -->
+        <!-- Info Modal 4 -->
         <div class="modal fade infoModal" id="infoModal-4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
                             <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close" data-dismiss="modal" id="closeInfoModal" aria-label="Close">
+                            <button type="button" class="close closeInfoModal" data-index="4" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -383,7 +344,7 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Close button -->
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeInfoModal">Close</button>
+                            <button type="button" class="btn btn-danger closeInfoModal" data-index="4" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
