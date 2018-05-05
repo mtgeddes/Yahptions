@@ -27,6 +27,7 @@ function getLatLongbyZipcode() {
     $('#mainPage').css('opacity', 'unset');
     $('.headercolor').css('opacity', 'unset');
     $('.backgroundimg').css('opacity', 'unset');
+    $('.rulesHeight').css('opacity', 'unset');
     console.log("getLatLongbyZipcode has been fired!");
     // Fire the api call to convert zipcode to latitude + longitude
     zipCode = $('#zipCodeText').val();  // Placeholder; later update this to $("#zipCode").val().trim();
@@ -45,6 +46,9 @@ function getLatLongbyZipcode() {
 // Get logitude by zipcode
 function getLatLongbyNearme() {
     $('#mainPage').css('opacity', 'unset');
+    $('.headercolor').css('opacity', 'unset');
+    $('.backgroundimg').css('opacity', 'unset');
+    $('.rulesHeight').css('opacity', 'unset');
      // Begin Ipdata api call; display current zip code
      var geocodeURL = "https://api.ipdata.co";
      $.ajax({  // Fire the api call to get the restaurants
@@ -496,6 +500,9 @@ $(".locationCard").on("click", function() {
     else if (eliminated.length == 4 && state === "lockedin") { // Shows the information on click of last restaurant
         $("#infoModal-" + $(this).attr("search-result")).removeClass().addClass("modal show zoomInDown animated infoModal");
         $('#mainPage').css('opacity', '.3');
+        console.log(eliminated.length);
+        console.log("#infoModal-" + $(this).attr("search-result"));
+        console.log();
     }
     else if (state ==="lockedin" && chosen.length == 5 && eliminated.length < 5) { // Eliminates option...
         eliminated.push("x");
