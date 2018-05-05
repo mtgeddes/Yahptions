@@ -446,23 +446,23 @@ $("#readyBtn").on("click", function() {
         }
     }
     else if ($("#nearMeBtn").is(':checked') || $('#zipCodeBtn').is(':checked') && zipCode.length == 5) {
-        $(".searchModalTitle").html("Find Yahptions --- Choose a <strong>Radius</strong>");
+        $(".searchModalTitle").html("Find Yahptions --- <small> Choose a <strong>Radius</strong>");
     }
 
     else if ($('#zipCodeBtn').is(':checked') && selectedRadius >= 1) {
-        $(".searchModalTitle").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits");
+        $(".searchModalTitle").html("Find Yahptions --- <small> <strong>Zip Code</strong> must have 5 digits </small>");
     }
 
     else if (selectedRadius >= 1) {
-        $(".searchModalTitle").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong>");
+        $(".searchModalTitle").html("Find Yahptions --- <small> Choose <strong>Near Me</strong> or <strong>Zip Code</strong> </small>");
     }
 
     else if ($('#zipCodeBtn').is(':checked')) {
-        $(".searchModalTitle").html("Find Yahptions --- <strong>Zip Code</strong> must have 5 digits and a <strong>Radius</strong> must be selected");
+        $(".searchModalTitle").html("Find Yahptions --- <small> <strong>Zip Code</strong> must have 5 digits and a <strong>Radius</strong> must be selected </small>");
     }
 
     else {
-        $(".searchModalTitle").html("Find Yahptions --- Choose <strong>Near Me</strong> or <strong>Zip Code</strong> and a <strong>Radius</strong>");
+        $(".searchModalTitle").html("Find Yahptions --- <small> Choose <strong>Near Me</strong> or <strong>Zip Code</strong> and a <strong>Radius</strong> </small>");
     }
 })
 
