@@ -25,6 +25,8 @@ $('#reroll').on("click", function() {
 // Get lattitude by zipcode
 function getLatLongbyZipcode() {
     $('#mainPage').css('opacity', 'unset');
+    $('.headercolor').css('opacity', 'unset');
+    $('.backgroundimg').css('opacity', 'unset');
     console.log("getLatLongbyZipcode has been fired!");
     // Fire the api call to convert zipcode to latitude + longitude
     zipCode = $('#zipCodeText').val();  // Placeholder; later update this to $("#zipCode").val().trim();
@@ -169,30 +171,40 @@ function displayRestaurants() {
         $('.option-' + i).attr('data-state', 'chooseRestaurant');
         $('.option-' + i + ' .cardclass h3.restaurantName').text(restaurantsArray[i].restaurant.name);
         if (restaurantsArray[i].restaurant.featured_image == "") {
-            $('.option-' + i + ' img').attr('src', './assets/images/featured_image.jpg');
+            $('.option-' + i + ' img').attr('src', './assets/images/featured_image.png');
         } else {
             $('.option-' + i + ' img').attr('src', restaurantsArray[i].restaurant.featured_image);
         }
         $('.option-' + i + ' h4#cuisines').text(restaurantsArray[i].restaurant.cuisines);
-        $('.option-' + i + ' h4#rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+        if (restaurantsArray[i].restaurant.user_rating.aggregate_rating == "0") {
+            $('.option-' + i + ' #rating').html('Rating: Not Rated');
+        } else {
+            $('.option-' + i + ' #rating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
+        }
         $('.heartBtn-' + i).attr("data-name", restaurantsArray[i].restaurant.name).attr("data-url", restaurantsArray[i].restaurant.url);
 
         $('#infoModal-' + i + ' h3#infoName').text(restaurantsArray[i].restaurant.name);
         if (restaurantsArray[i].restaurant.featured_image == "") {
-            $('#infoModal-' + i + ' img#infoImg').attr('src', './assets/images/featured_image.jpg');
+            $('#infoModal-' + i + ' img#infoImg').attr('src', './assets/images/featured_image.png');
         } else {
             $('#infoModal-' + i + ' img#infoImg').attr('src', restaurantsArray[i].restaurant.featured_image);
         }
         $('#infoModal-' + i + ' h4#infoRating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
-        if (restaurantsArray[i].restaurant.user_rating.aggregate_rating < 2.9) {
+        if (restaurantsArray[i].restaurant.user_rating.aggregate_rating == "0") {
+            $('#infoModal-' + i + ' h4#infoRating').css('color', 'black');
+        } else if (restaurantsArray[i].restaurant.user_rating.aggregate_rating < 2.9) {
             $('#infoModal-' + i + ' h4#infoRating').css('color', 'red');
         } else if (restaurantsArray[i].restaurant.user_rating.aggregate_rating < 3.9) {
             $('#infoModal-' + i + ' h4#infoRating').css('color', 'orange');
         } else if (restaurantsArray[i].restaurant.user_rating.aggregate_rating <= 5) {
             $('#infoModal-' + i + ' h4#infoRating').css('color', 'darkgreen');
         }
-        $('#infoModal-' + i + ' h4#infoRating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
-        $('#infoModal-' + i + ' h4#infoCuisines').text(restaurantsArray[i].restaurant.cuisines);
+        if (restaurantsArray[i].restaurant.user_rating.aggregate_rating == "0") {
+            $('#infoModal-' + i + ' h4#infoRating').html('Rating: Not Rated');
+        } else {
+            $('#infoModal-' + i + ' h4#infoRating').html('Rating: ' + restaurantsArray[i].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+        }
+        $('#infoModal-' + i + ' h4#infoCuisines').text('Food Type: ' + restaurantsArray[i].restaurant.cuisines);
         $('#infoModal-' + i + ' h4#infoAddress').text(restaurantsArray[i].restaurant.location.address);
         if (restaurantsArray[i].restaurant.average_cost_for_two == 0) {
             $('#infoModal-' + i + ' h4#infoAverageCost').html('Average Cost: Cheap!' + '&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>');
@@ -249,32 +261,40 @@ function reRoll() {
             if ($('.option-' + z).attr('search-result') == counter ) { 
                 $('.option-' + z + ' h3').text(restaurantsArray[counter].restaurant.name);
                 if (restaurantsArray[counter].restaurant.featured_image == "") {
-                    $('.option-' + z + ' img').attr('src', './assets/images/featured_image.jpg');
+                    $('.option-' + z + ' img').attr('src', './assets/images/featured_image.png');
                 } else {
                     $('.option-' + z + ' img').attr('src', restaurantsArray[counter].restaurant.featured_image);
                 }
                 $('.option-' + z + ' #cuisines').text(restaurantsArray[counter].restaurant.cuisines)
-                $('.option-' + z + ' #rating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
-
+                if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating == "0") {
+                    $('.option-' + z + ' #rating').html('Rating: Not Rated');
+                } else {
+                    $('.option-' + z + ' #rating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty">');
+                }
                 $('.heartBtn-' + z).attr("data-name", restaurantsArray[counter].restaurant.name).attr("data-url", restaurantsArray[counter].restaurant.url).attr("data-clicked", "unclicked");
-
 
                 $('#infoModal-' + z + ' h3#infoName').text(restaurantsArray[counter].restaurant.name);
                 if (restaurantsArray[counter].restaurant.featured_image == "") {
-                    $('#infoModal-' + z + ' img#infoImg').attr('src', './assets/images/featured_image.jpg');
+                    $('#infoModal-' + z + ' img#infoImg').attr('src', './assets/images/featured_image.png');
                 } else {
                     $('#infoModal-' + z + ' img#infoImg').attr('src', restaurantsArray[counter].restaurant.featured_image);
                 }
                 $('#infoModal-' + z + ' h4#infoRating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
-                if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating < 2.9) {
+                if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating == "0") {
+                    $('#infoModal-' + z + ' h4#infoRating').css('color', 'black');
+                } else if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating < 2.9) {
                     $('#infoModal-' + z + ' h4#infoRating').css('color', 'red');
                 } else if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating < 3.9) {
                     $('#infoModal-' + z + ' h4#infoRating').css('color', 'orange');
                 } else if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating <= 5) {
                     $('#infoModal-' + z + ' h4#infoRating').css('color', 'darkgreen');
                 }
-                $('#infoModal-' + z + ' h4#infoRating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
-                $('#infoModal-' + z + ' h4#infoCuisines').text(restaurantsArray[counter].restaurant.cuisines);
+                if (restaurantsArray[counter].restaurant.user_rating.aggregate_rating == "0") {
+                    $('#infoModal-' + z + ' h4#infoRating').html('Rating: Not Rated');
+                } else {
+                    $('#infoModal-' + z + ' h4#infoRating').html('Rating: ' + restaurantsArray[counter].restaurant.user_rating.aggregate_rating + '&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span>');
+                }
+                $('#infoModal-' + z + ' h4#infoCuisines').text('Food Type: ' + restaurantsArray[counter].restaurant.cuisines);
                 $('#infoModal-' + z + ' h4#infoAddress').text(restaurantsArray[counter].restaurant.location.address);
                 if (restaurantsArray[counter].restaurant.average_cost_for_two == 0) {
                     $('#infoModal-' + z + ' h4#infoAverageCost').html('Average Cost: Cheap!' + '&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>');
@@ -301,6 +321,8 @@ $("#showSearchModal").on("click", function() {
     $("#searchModal").show();
     $("#searchModal").removeClass().addClass("modal show zoomInDown animated");
     $('#mainPage').css('opacity', '.3');
+    $('.headercolor').css('opacity', '.3');
+    $('.backgroundimg').css('opacity', '.3');
 });
   
 // Closes the SEARCH modal <<<
@@ -308,6 +330,8 @@ $("#hideSearchModal").on("click", function() {
     $("#searchModal").hide();
     $("#searchModal").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
+    $('.headercolor').css('opacity', 'unset');
+    $('.backgroundimg').css('opacity', 'unset');
 });
 
 // Opens the FAVORITES modal >>>
@@ -315,6 +339,8 @@ $("#showFavoriteModal").on("click", function () {
     $("#favModal").show()
     $("#favModal").removeClass().addClass("modal show zoomInDown animated");
     $('#mainPage').css('opacity', '.3');
+    $('.headercolor').css('opacity', '.3');
+    $('.backgroundimg').css('opacity', '.3');
 })
 
 // Closes the FAVORITES modal <<<
@@ -322,6 +348,8 @@ $(".hideFavoriteModal").on("click", function() {
     $("#favModal").hide();
     $("#favModal").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
+    $('.headercolor').css('opacity', 'unset');
+    $('.backgroundimg').css('opacity', 'unset');
 });
 
 // Opens the HISTORY modal >>>
@@ -329,6 +357,8 @@ $("#showHistoryModal").on("click", function () {
     $("#historyModal").show()
     $("#historyModal").removeClass().addClass("modal show zoomInDown animated");
     $('#mainPage').css('opacity', '.3');
+    $('.headercolor').css('opacity', '.3');
+    $('.backgroundimg').css('opacity', '.3');
 })
  
 // Closes the HISTORY modal <<<
@@ -336,6 +366,8 @@ $(".hideHistoryModal").on("click", function() {
     $("#historyModal").hide();
     $("#historyModal").removeClass().addClass("modal show zoomOut animated");
     $('#mainPage').css('opacity', 'unset');
+    $('.headercolor').css('opacity', 'unset');
+    $('.backgroundimg').css('opacity', 'unset');
 });
 
 // Opens the INFO modal of the corresponding location card >>>
