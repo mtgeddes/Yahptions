@@ -47,6 +47,16 @@ p {
     opacity: 1
 }
 
+.backgroundimg {
+    background-image: url("../images/background2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.headercolor {
+    background-color: rgb(255, 255, 255, .8);
+}
+
 .arrowimage {
     background-image: url("../images/arrow.gif");
     background-repeat: no-repeat;
@@ -97,6 +107,7 @@ p {
     min-height: 100px;
 }
 
+
 .img-responsive {
     height: 100px;
     margin: 0 auto;
@@ -107,6 +118,7 @@ p {
     height: 400px;
     padding: 11px;
     border-radius: 5px;
+    background-color: white;
 }
 
 .borderchosen {
@@ -183,6 +195,11 @@ p {
     margin-bottom: -45px;
     margin-top: -10px;
     padding-bottom: 15px;
+}
+
+#mainPage {
+    min-height: 525px;
+    margin: 30px 0px 30px 0px;
 }
 
 #cuisines {

@@ -26,332 +26,341 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:900" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- Begin Search Modal -->
-        <div class="modal zoomInDown animated show" id="searchModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                        <button type="button" class="close" data-dismiss="modal" id="hideSearchModal">&times;</button>   <!-- 'x' in top right corner -->
-                        <h4 class="modal-title searchModalTitle" id="searchModalTitle">Find Yahptions</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">   <!-- Near me Button -->
-                            <div class="radio">
-                                <label><input type="radio" name="radioBtn" class="enter" id="nearMeBtn" value="Near Me">Near Me<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></label>
-                            </div>
-                        </div>
-                        <div class="form-group">   <!-- Zip Code Button -->
-                            <div class="radio">
-                                <label for="zipCodeBtn"><input type="radio" name="radioBtn" class="enter" id="zipCodeBtn" value="Zip Code">Zip Code <input type="text" name="mail" class="enter" size="6" placeholder="" id="zipCodeText"></label>
-                            </div>
-                        </div>
-                        <div class="form-group">   <!-- Radius w/ required coding -->
-                            <label for="radiusBtn">Radius
-                                <select id="radiusBtn" class="custom-select" id="inputOptions" required>
-                                <option selected disabled>Choose...</option>
-                                <option value="1">1 Mile</option>
-                                <option value="5">5 Miles</option>
-                                <option value="10">10 Miles</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">   <!-- Ready button -->
-                        <input type="submit" value="Ready" id="readyBtn" name="submit" class="btn btn-danger">
+    <div class="row headercolor">
+        <div class="container">
+            <div class="col-xs-9">
+                <div class="header">
+                    <h1><span><img class="dice" src="./assets/images/blackoutlinedice.jpg"></span>Yahptions</h1>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="headeroptions">
+                    <button type="button" class="btn btn-default" id="showHistoryModal" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default heart" id="showFavoriteModal" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default" id="showSearchModal" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    <div class="float-bubble">
+                        <div class="arrowimage" style="transform: scaleY(-1)"> </div>
+                        <div class="text-center form-group start">Start!</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Search Modal -->
-        <!-- Begin Main Page -->
-        <div id="mainPage">
-            <div class="row">
-                <div class="col-xs-9">
-                    <div class="header">
-                        <h1><span><img class="dice" src="./assets/images/blackoutlinedice.jpg"></span>Yahptions</h1>
-                        <p class="rules"></p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="headeroptions">
-                        <button type="button" class="btn btn-default" id="showHistoryModal" aria-label="Left Align"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heart" id="showFavoriteModal" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default" id="showSearchModal" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        <div class="float-bubble">
-                            <div class="arrowimage" style="transform: scaleY(-1)"> </div>
-                            <div class="text-center form-group start">Start!</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-      
-         
-            <div id="option-cards">    
-                <div class="row">
-                <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
-                    <div class="option-0 locationCard handpointer" data-state="chooseRestaurant" search-result="">
-                        <div class="cardclass">
-                            <h3 class="restaurantName">Restaurant1</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200X300" class="img-responsive">
-                        </div>
-                        <h4 id="cuisines"></h4>
-                        <h4 id="rating">Rating: </h4>
-                    </div>
-                    <div class="optionButtons">
-                        <button type="button" class="btn btn-default infoBtn" data-index="0" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heartBtn-0 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
-                    <div class="option-1 locationCard handpointer" data-state="chooseRestaurant" search-result="">
-                        <div class="cardclass" >
-                            <h3 class="restaurantName">Restaurant2</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-                        </div>
-                        <h4 id="cuisines"></h4>
-                        <h4 id="rating">Rating: </h4>
-                    </div>
-                    <div class="optionButtons">
-                        <button type="button" class="btn btn-default infoBtn" data-index="1" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heartBtn-1 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
-                    <div class="option-2 locationCard handpointer" data-state="chooseRestaurant" search-result="">
-                        <div class="cardclass">
-                            <h3 class="restaurantName">Restaurant3</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-                        </div>
-                        <h4 id="cuisines"></h4>
-                        <h4 id="rating">Rating: </h4>
-                    </div>
-                    <div class="optionButtons">
-                        <button type="button" class="btn btn-default infoBtn" data-index="2" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heartBtn-2 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
-                    <div class="option-3 locationCard handpointer" data-state="chooseRestaurant" search-result="">
-                        <div class="cardclass">
-                            <h3 class="restaurantName">Restaurant4</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-                        </div>
-                        <h4 id="cuisines"></h4>
-                        <h4 id="rating">Rating: </h4>
-                    </div>
-                    <div class="optionButtons">
-                        <button type="button" class="btn btn-default infoBtn" data-index="3" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heartBtn-3 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
-                    <div class="option-4 locationCard handpointer" data-state="chooseRestaurant" search-result="">
-                        <div class="cardclass">
-                            <h3 class="restaurantName">Restaurant5</h3>
-                            <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
-                        </div>
-                        <h4 id="cuisines"></h4>
-                        <h4 id="rating">Rating: </h4>
-                    </div>
-                    <div class="optionButtons">
-                        <button type="button" class="btn btn-default infoBtn" data-index="4" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-default heartBtn-4 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                </div>
-                <div class="row" id="rerollBtn">
-                    <div class="col-xs-12 text-center">
-                        <button type="button" id="reroll" class="btn btn-danger">re-roll</button>
-                        <h5 id="reroll-message"></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <!-- End Main Page -->
- 
-      
-        <!-- Begin Favorites modal -->
-        <div class="modal fade" id="favModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                        <h4 class="modal-title" id="modalTitle">Favorites</h4>
-                        <button type="button" class="close hideFavoriteModal" data-dismiss="modal" id="hideModal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <div id="favorites">
-                            Favorites
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <!-- Close button -->
-                        <button type="button" class="btn btn-danger hideFavoriteModal" data-dismiss="modal" id="hideModal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Favorites modal -->
-
-        <!-- Begin History modal -->
-        <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                        <h4 class="modal-title" id="modalTitle">History Modal</h4>
-                        <button type="button" class="close hideHistoryModal" data-dismiss="modal" id="hideModal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <div id="history">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <!-- Close button -->
-                        <button type="button" class="btn btn-danger hideHistoryModal" data-dismiss="modal" id="hideModal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End History modal -->
-
-        <!-- Begin Info Modals -->
-        <!-- Info Modal 0 -->
-        <div class="modal fade" id="infoModal-0" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                        <h4 class="modal-title" id="modalTitle">More info</h4>
-                        <button type="button" class="close closeInfoModal" data-index="0" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <h4 id="infoName">Name: </h4>
-                        <p><img id="infoImg" class="img-responsive"></p>
-                        <h4 id="infoRating">Rating:</h4>
-                        <h4 id="infoCuisines">Type:</h4>
-                        <h4 id="infoAddress">Address:</h4>
-                        <h4 id="infoURL">URL:</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <!-- Close button -->
-                        <button type="button" class="btn btn-danger closeInfoModal" data-index="0" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Info Modal 1 -->
-        <div class="modal fade infoModal" id="infoModal-1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close closeInfoModal" data-index="1" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h4 id="infoName">Name: </h4>
-                            <p><img id="infoImg" class="img-responsive"></p>
-                            <h4 id="infoRating">Rating:</h4>
-                            <h4 id="infoCuisines">Type:</h4>
-                            <h4 id="infoAddress">Address:</h4>
-                            <h4 id="infoURL">URL:</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Close button -->
-                            <button type="button" class="btn btn-danger closeInfoModal" data-index="1" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <!-- Info Modal 2 -->
-        <div class="modal fade infoModal" id="infoModal-2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close closeInfoModal" data-index="2" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h4 id="infoName">Name: </h4>
-                            <p><img id="infoImg" class="img-responsive"></p>
-                            <h4 id="infoRating">Rating:</h4>
-                            <h4 id="infoCuisines">Type:</h4>
-                            <h4 id="infoAddress">Address:</h4>
-                            <h4 id="infoURL">URL:</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Close button -->
-                            <button type="button" class="btn btn-danger closeInfoModal" data-index="2" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <!-- Info Modal 3 -->
-        <div class="modal fade infoModal" id="infoModal-3" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close closeInfoModal" data-index="3" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h4 id="infoName">Name: </h4>
-                            <p><img id="infoImg" class="img-responsive"></p>
-                            <h4 id="infoRating">Rating:</h4>
-                            <h4 id="infoCuisines">Type:</h4>
-                            <h4 id="infoAddress">Address:</h4>
-                            <h4 id="infoURL">URL:</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Close button -->
-                            <button type="button" class="btn btn-danger closeInfoModal" data-index="3" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <!-- Info Modal 4 -->
-        <div class="modal fade infoModal" id="infoModal-4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title" id="modalTitle">More info</h4>
-                            <button type="button" class="close closeInfoModal" data-index="4" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h4 id="infoName">Name: </h4>
-                            <p><img id="infoImg" class="img-responsive"></p>
-                            <h4 id="infoRating">Rating:</h4>
-                            <h4 id="infoCuisines">Type:</h4>
-                            <h4 id="infoAddress">Address:</h4>
-                            <h4 id="infoURL">URL:</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Close button -->
-                            <button type="button" class="btn btn-danger closeInfoModal" data-index="4" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!-- End Info Modals -->
-       
-
     </div>
+    <div class="row rulesheight text-center">
+            <p class="rules text-center"></p>
+    </div>
+    <div class="backgroundimg">
+        <div class="container ">
+            <!-- Begin Main Page -->
+            <div id="mainPage">
+                <div id="option-cards">    
+                    <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
+                        <div class="option-0 locationCard handpointer" data-state="chooseRestaurant" search-result="">
+                            <div class="cardclass">
+                                <h3 class="restaurantName">Restaurant1</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200X300" class="img-responsive">
+                            </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
+                        </div>
+                        <div class="optionButtons">
+                            <button type="button" class="btn btn-default infoBtn" data-index="0" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default heartBtn-0 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
+                        <div class="option-1 locationCard handpointer" data-state="chooseRestaurant" search-result="">
+                            <div class="cardclass" >
+                                <h3 class="restaurantName">Restaurant2</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
+                        </div>
+                        <div class="optionButtons">
+                            <button type="button" class="btn btn-default infoBtn" data-index="1" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default heartBtn-1 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
+                        <div class="option-2 locationCard handpointer" data-state="chooseRestaurant" search-result="">
+                            <div class="cardclass">
+                                <h3 class="restaurantName">Restaurant3</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
+                        </div>
+                        <div class="optionButtons">
+                            <button type="button" class="btn btn-default infoBtn" data-index="2" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default heartBtn-2 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
+                        <div class="option-3 locationCard handpointer" data-state="chooseRestaurant" search-result="">
+                            <div class="cardclass">
+                                <h3 class="restaurantName">Restaurant4</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
+                        </div>
+                        <div class="optionButtons">
+                            <button type="button" class="btn btn-default infoBtn" data-index="3" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default heartBtn-3 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-2 outer-div">
+                        <div class="option-4 locationCard handpointer" data-state="chooseRestaurant" search-result="">
+                            <div class="cardclass">
+                                <h3 class="restaurantName">Restaurant5</h3>
+                                <img id="placeholder" src="http://via.placeholder.com/200x300" class="img-responsive">
+                            </div>
+                            <h4 id="cuisines"></h4>
+                            <h4 id="rating">Rating: </h4>
+                        </div>
+                        <div class="optionButtons">
+                            <button type="button" class="btn btn-default infoBtn" data-index="4" aria-label="Left Align"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-default heartBtn-4 favoriteThis" aria-label="Left Align"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row" id="rerollBtn">
+                        <div class="col-xs-12 text-center">
+                            <button type="button" id="reroll" class="btn btn-danger">re-roll</button>
+                            <h5 id="reroll-message"></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Page -->
+
+    <!--////////////////////////////-->
+    <!--/////// BEGIN MODALS ///////-->
+    <!--////////////////////////////-->
+
+    <!-- Begin Search Modal -->
+    <div class="modal zoomInDown animated show" id="searchModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal" id="hideSearchModal">&times;</button>   <!-- 'x' in top right corner -->
+                    <h4 class="modal-title searchModalTitle" id="searchModalTitle">Find Yahptions</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">   <!-- Near me Button -->
+                        <div class="radio">
+                            <label><input type="radio" name="radioBtn" class="enter" id="nearMeBtn" value="Near Me">Near Me<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">   <!-- Zip Code Button -->
+                        <div class="radio">
+                            <label for="zipCodeBtn"><input type="radio" name="radioBtn" class="enter" id="zipCodeBtn" value="Zip Code">Zip Code <input type="text" name="mail" class="enter" size="6" placeholder="" id="zipCodeText"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">   <!-- Radius w/ required coding -->
+                        <label for="radiusBtn">Radius
+                            <select id="radiusBtn" class="custom-select" id="inputOptions" required>
+                            <option selected disabled>Choose...</option>
+                            <option value="1">1 Mile</option>
+                            <option value="5">5 Miles</option>
+                            <option value="10">10 Miles</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">   <!-- Ready button -->
+                    <input type="submit" value="Ready" id="readyBtn" name="submit" class="btn btn-danger">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Search Modal -->
+
+    <!-- Begin Favorites modal -->
+    <div class="modal fade" id="favModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">Favorites</h4>
+                    <button type="button" class="close hideFavoriteModal" data-dismiss="modal" id="hideModal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="favorites">
+                        Favorites
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger hideFavoriteModal" data-dismiss="modal" id="hideModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Favorites modal -->
+
+    <!-- Begin History modal -->
+    <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">History Modal</h4>
+                    <button type="button" class="close hideHistoryModal" data-dismiss="modal" id="hideModal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="history">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger hideHistoryModal" data-dismiss="modal" id="hideModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End History modal -->
+
+    <!-- Begin Info Modals -->
+    <!-- Info Modal 0 -->
+    <div class="modal fade" id="infoModal-0" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">More info</h4>
+                    <button type="button" class="close closeInfoModal" data-index="0" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 id="infoName">Name: </h4>
+                    <p><img id="infoImg" class="img-responsive"></p>
+                    <h4 id="infoRating">Rating:</h4>
+                    <h4 id="infoCuisines">Type:</h4>
+                    <h4 id="infoAddress">Address:</h4>
+                    <h4 id="infoURL">URL:</h4>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger closeInfoModal" data-index="0" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal 1 -->
+    <div class="modal fade infoModal" id="infoModal-1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">More info</h4>
+                    <button type="button" class="close closeInfoModal" data-index="1" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 id="infoName">Name: </h4>
+                    <p><img id="infoImg" class="img-responsive"></p>
+                    <h4 id="infoRating">Rating:</h4>
+                    <h4 id="infoCuisines">Type:</h4>
+                    <h4 id="infoAddress">Address:</h4>
+                    <h4 id="infoURL">URL:</h4>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger closeInfoModal" data-index="1" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal 2 -->
+    <div class="modal fade infoModal" id="infoModal-2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">More info</h4>
+                    <button type="button" class="close closeInfoModal" data-index="2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 id="infoName">Name: </h4>
+                    <p><img id="infoImg" class="img-responsive"></p>
+                    <h4 id="infoRating">Rating:</h4>
+                    <h4 id="infoCuisines">Type:</h4>
+                    <h4 id="infoAddress">Address:</h4>
+                    <h4 id="infoURL">URL:</h4>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger closeInfoModal" data-index="2" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal 3 -->
+    <div class="modal fade infoModal" id="infoModal-3" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">More info</h4>
+                    <button type="button" class="close closeInfoModal" data-index="3" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 id="infoName">Name: </h4>
+                    <p><img id="infoImg" class="img-responsive"></p>
+                    <h4 id="infoRating">Rating:</h4>
+                    <h4 id="infoCuisines">Type:</h4>
+                    <h4 id="infoAddress">Address:</h4>
+                    <h4 id="infoURL">URL:</h4>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger closeInfoModal" data-index="3" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal 4 -->
+    <div class="modal fade infoModal" id="infoModal-4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title" id="modalTitle">More info</h4>
+                    <button type="button" class="close closeInfoModal" data-index="4" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 id="infoName">Name: </h4>
+                    <p><img id="infoImg" class="img-responsive"></p>
+                    <h4 id="infoRating">Rating:</h4>
+                    <h4 id="infoCuisines">Type:</h4>
+                    <h4 id="infoAddress">Address:</h4>
+                    <h4 id="infoURL">URL:</h4>
+                </div>
+                <div class="modal-footer">
+                    <!-- Close button -->
+                    <button type="button" class="btn btn-danger closeInfoModal" data-index="4" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Info Modals -->
+
+    <!--////////////////////////////-->
+    <!--/////// END MODALS /////////-->
+    <!--////////////////////////////-->
 </body>
 </html>
