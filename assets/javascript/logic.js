@@ -385,7 +385,7 @@ $(".infoBtn").on("click", function() {
 // Closes the INFO modal that is currently displaying <<<
 $(".closeInfoModal").on("click", function() {
     var dataIndex = $(this).attr("data-index");
-    $("#infoModal-" + dataIndex).removeClass().addClass("modal show zoomOut animated");
+    $("#infoModal-" + dataIndex).removeClass().addClass("modal show zoomOut animated infoModal");
     $('#mainPage').css('opacity', 'unset');
     console.log("works")
 });
