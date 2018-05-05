@@ -498,7 +498,7 @@ $(".locationCard").on("click", function() {
         }
     }
     else if (eliminated.length == 4 && state === "lockedin") { // Shows the information on click of last restaurant
-        $("#infoModal-" + $(this).attr("search-result")).removeClass().addClass("modal show zoomInDown animated infoModal");
+        $("#infoModal-" + $(this).attr("data-count")).removeClass().addClass("modal show zoomInDown animated infoModal");
         $('#mainPage').css('opacity', '.3');
         console.log(eliminated.length);
         console.log("#infoModal-" + $(this).attr("search-result"));
@@ -511,6 +511,7 @@ $(".locationCard").on("click", function() {
         $(this).removeClass("handpointer");
         $(this).addClass("bordereliminated");
         $(this).attr("data-state", "eliminated");
+        $("#option-info-panel-" + $(this).attr("data-count")).addClass("handpointer").css("opacity", "0.2");;
         if (eliminated.length == 4) {   // Game is over, show the userSelection modal
             for (var i = 0; i <= 4; i++) {
                 var infoPanel = $("#infoModal-" + i);
