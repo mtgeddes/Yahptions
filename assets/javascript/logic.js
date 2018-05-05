@@ -83,6 +83,7 @@ function getRestaurants() {
     var zomatoURL3 = searchURL + "&start=" + page3;
     var zomatoURL4 = searchURL + "&start=" + page4;
     var zomatoURL5 = searchURL + "&start=" + page5;
+    $(".rules").html("<img id='placeholder' src='./assets/images/loading-gif.gif' class='img-responsive' style='margin-top: -60px'>") // Loading...
     $.ajax({  // Fire the api call to get the restaurants; page 1
         url: zomatoURL1,
         dataType: 'json',
@@ -90,6 +91,8 @@ function getRestaurants() {
         beforeSend: function(xhr){xhr.setRequestHeader('user-key', 'aabf39b370ad7219908488f6fbaa652c');},  // This inserts the api key into the HTTP header
         success: function(data1) {  // Then do the following...
             console.log(zomatoURL1);
+            var selectionRules = "Begin by selecting any <u>Yahption</u> that sounds good. Don't like any of them? That's fine, just re-roll!"
+  
             for (i = 0; i < data1.restaurants.length; i++) {
                 restaurantsArray.push(data1.restaurants[i]);
             }
@@ -145,6 +148,7 @@ function getRestaurants() {
                     console.log(restaurantsArray);
                 }
             });
+            $(".rules").html(selectionRules)
             displayRestaurants();
         }
     });
@@ -305,8 +309,10 @@ $("#showSearchModal").on("click", function() {
   
 // Closes the SEARCH modal <<<
 $("#hideSearchModal").on("click", function() {
+    var beginRules = "Click the search button in the top right to begin"
     $("#searchModal").hide();
     $("#searchModal").removeClass().addClass("modal show zoomOut animated");
+    $(".rules").html(beginRules)
     $('#mainPage').css('opacity', 'unset');
 });
 
@@ -386,7 +392,6 @@ $("#readyBtn").on("click", function() {
     var zipCode = $("#zipCodeText").val();
     var chosenRadius = $("#radiusBtn").val()
     var selectedRadius = parseInt(chosenRadius)
-
     if (($('#nearMeBtn').is(':checked') || ($('#zipCodeBtn').is(':checked') && zipCode.length == 5)) && selectedRadius > 0 ) {
         $("#searchModal").removeClass().addClass("modal show zoomOut animated");
         $(".searchModalTitle").html("Find Yahptions");
@@ -438,8 +443,8 @@ var eliminated = [];
 // Choose and eliminate function...
 $(".locationCard").on("click", function() {
     var state = $(this).attr("data-state");
-    var eliminationRules = "Great! You've overcome the hardest part. Now, save that friendship and start by eliminating one at a time. Start with what you least desire...<small><small><small>or if you want to start a war, eliminate the one you know your friend really really wants.</small></small></small>"
-    
+    var eliminationRules = "Great! Now eliminate any options you've previously selected by starting with the place you would least like to visit"
+    var startOver = "Here's your <u>Yahption</u>! We hope you like it. If not, you can always <u>Yahption</u> again!"
     if (state ==="chooseRestaurant") { // Locks in option
         chosen.push("x");
         $(this).attr("data-state", "lockedin");
@@ -469,6 +474,7 @@ $(".locationCard").on("click", function() {
                 var name = $(".heartBtn-" + i).attr("data-name");  
                 var url = $(".heartBtn-" + i).attr("data-url");
                 if (cardState !== "eliminated") {
+                    $(".rules").html(startOver)
                     infoPanel.removeClass().addClass("modal show zoomInDown animated infoModal");
                     if (historyNameList.length < 6){
                         historyNameList.push(name); 
