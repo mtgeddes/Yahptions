@@ -327,6 +327,7 @@ $("#showSearchModal").on("click", function() {
     $('#mainPage').css('opacity', '.3');
     $('.headercolor').css('opacity', '.3');
     $('.backgroundimg').css('opacity', '.3');
+    $('.rulesHeight').css('opacity', '.3');
 });
   
 // Closes the SEARCH modal <<<
@@ -338,6 +339,7 @@ $("#hideSearchModal").on("click", function() {
     $('#mainPage').css('opacity', 'unset');
     $('.headercolor').css('opacity', 'unset');
     $('.backgroundimg').css('opacity', 'unset');
+    $('.rulesHeight').css('opacity', 'unset');
 });
 
 // Opens the FAVORITES modal >>>
@@ -347,6 +349,7 @@ $("#showFavoriteModal").on("click", function () {
     $('#mainPage').css('opacity', '.3');
     $('.headercolor').css('opacity', '.3');
     $('.backgroundimg').css('opacity', '.3');
+    $('.rulesHeight').css('opacity', '.3');
 })
 
 // Closes the FAVORITES modal <<<
@@ -356,6 +359,7 @@ $(".hideFavoriteModal").on("click", function() {
     $('#mainPage').css('opacity', 'unset');
     $('.headercolor').css('opacity', 'unset');
     $('.backgroundimg').css('opacity', 'unset');
+    $('.rulesHeight').css('opacity', 'unset');
 });
 
 // Opens the HISTORY modal >>>
@@ -365,6 +369,7 @@ $("#showHistoryModal").on("click", function () {
     $('#mainPage').css('opacity', '.3');
     $('.headercolor').css('opacity', '.3');
     $('.backgroundimg').css('opacity', '.3');
+    $('.rulesHeight').css('opacity', '.3');
 })
  
 // Closes the HISTORY modal <<<
@@ -374,6 +379,7 @@ $(".hideHistoryModal").on("click", function() {
     $('#mainPage').css('opacity', 'unset');
     $('.headercolor').css('opacity', 'unset');
     $('.backgroundimg').css('opacity', 'unset');
+    $('.rulesHeight').css('opacity', 'unset');
 });
 
 // Opens the INFO modal of the corresponding location card >>>
