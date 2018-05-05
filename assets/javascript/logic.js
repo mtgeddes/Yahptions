@@ -371,7 +371,14 @@ $("#zipCodeText").keyup(function (){
         $("#zipCodeText").val(str)
     }
 })
- 
+
+// Runs the ready button search if enter is pressed
+$('.enter').keypress(function(e){
+    if (e.which == 13){//Enter key pressed
+        $('#readyBtn').click();//Trigger search button click event
+    }
+});
+
 // Submits the results of the search Modal and hides it
 $("#readyBtn").on("click", function() {
     restaurantsArray = [];
