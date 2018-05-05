@@ -144,11 +144,10 @@ p {
 .optionButtons {
     display: flex;
     justify-content: space-around;
-    transform: translate(1px, -52px);
+    transform: translate(0.5px, -52px);
     padding-bottom: 10px;
     background: #E43B3B;
     border-radius: 5px;
-    width: 198px;
 }
 
 .options {
@@ -254,6 +253,12 @@ p {
         justify-content: flex-end;
         margin-left: 100px;
         max-width: 60px;
+    }
+}
+
+@media all and (max-width: 767px){
+    .header h1 {
+        font-size: 38px;
     }
 }
   
