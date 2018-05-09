@@ -401,3 +401,24 @@ p {
 /*//////////////////////////*/
 /*///// End key frames /////*/ 
 /*//////////////////////////*/
+
+
+
+
+
+
+
+
+.form__error {
+    border: 1px solid #E43B3B;
+    border-radius: 5px;
+    box-shadow: 
+    0 0 1px #E43B3B, 
+    0 0 2px #E43B3B, 
+    0 0 6px #E43B3B, 
+    0 0 12px #E43B3B, 
+    inset 0 0 1px #E43B3B, 
+    inset 0 0 2px #E43B3B, 
+    inset 0 0 6px #E43B3B, 
+    inset 0 0 12px #E43B3B;
+}
