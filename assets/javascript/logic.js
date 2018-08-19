@@ -50,9 +50,10 @@ function getLatLongbyNearme() {
     $('.backgroundimg').css('opacity', 'unset');
     $('.rulesHeight').css('opacity', 'unset');
      // Begin Ipdata api call; display current zip code
-     var geocodeURL = "https://api.ipdata.co";
+     var geocodeURL = "https://api.ipdata.co/";
+     var ipdataApiKey = "3c11194287310cf6fc0b746c5d5ea2effeac2b995b3263a4afd06148"
      $.ajax({  // Fire the api call to get the restaurants
-        url: geocodeURL,
+        url: geocodeURL + "?api-key=" + ipdataApiKey,
         dataType: 'json',
         async: true,
         success: function(data) {
